@@ -1,6 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlPlayer : MonoBehaviour
 {
@@ -20,11 +21,28 @@ public class ControlPlayer : MonoBehaviour
 
     public GameObject mouseFollow;
     private GameObject followGO;
+    public GameObject explode;
+
+    public float timeSinceStart;
+    public TMPro.TMP_Text score;
+
+    public LevelManager levelManager;
+
+    private GameObject endScreen;
+    private GameObject runScreen;
 
     void Start()
     {
         r.isKinematic = true;
         released = false;
+
+        score = GameObject.Find("Score").GetComponent<TMPro.TMP_Text>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+        endScreen = GameObject.Find("Ended");
+        GameObject.Find("Level").GetComponent<TMPro.TMP_Text>().text = levelManager.levelNumber.ToString();
+        endScreen.SetActive(false);
+        runScreen = GameObject.Find("Running");
     }
 
     public void Release(Vector2 velocity)
@@ -68,6 +86,66 @@ public class ControlPlayer : MonoBehaviour
         {
             Release(releaseSpeed);
             Destroy(followGO);
+        }
+
+        if (released)
+        {
+            timeSinceStart += 1f * Time.deltaTime;
+            score.text = timeSinceStart.ToString("#.#") + "s";
+        }
+    }
+
+    IEnumerator OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "planet") //Retry run.
+        {
+            explode.SetActive(true);
+            GetComponent<SpriteRenderer>().enabled = false;
+            r.constraints = RigidbodyConstraints2D.FreezeAll;
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if (collision.collider.tag == "end") //Finish the run.
+        {
+            GetComponent<Collider2D>().enabled = false;
+            released = false;
+            r.constraints = RigidbodyConstraints2D.FreezeAll;
+            Vector3 originalPos = transform.position;
+            for (int i = 0; i < 100; i++)
+            {
+                transform.position = Vector2.Lerp(originalPos, collision.transform.position, i / 100f);
+                yield return new WaitForEndOfFrame();
+            }
+            for (int i = 0; i < 60; i++)
+            {
+                transform.localScale = transform.localScale * 1.1f;
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])
+            {
+                PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
+                PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            }
+            else if (timeSinceStart < levelManager.starTimes[1] && timeSinceStart > levelManager.starTimes[0])
+            {
+                PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
+                PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+                endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;
+            }
+            else if (timeSinceStart < levelManager.starTimes[0])
+            {
+                PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
+                PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+                endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;
+                endScreen.transform.GetChild(2).GetComponent<Image>().color = Color.white;
+            }
+
+            runScreen.SetActive(false);
+            endScreen.SetActive(true);
         }
     }
 

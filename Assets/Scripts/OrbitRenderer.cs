@@ -109,7 +109,7 @@ public class OrbitRenderer : MonoBehaviour
             predictedPoints.Add(new Vector3(nextPoint.x, nextPoint.y, 0));
             if (u % resolution == 0)
             {
-                linePoints.Add(new Vector3(nextPoint.x, nextPoint.y, 0));
+                linePoints.Add(new Vector3(Mathf.Clamp(nextPoint.x, transform.parent.position.x - 1000, transform.parent.position.x + 1000), Mathf.Clamp(nextPoint.y, transform.parent.position.y - 1000, transform.parent.position.y + 1000), 0));
                 calcLength += Vector2.Distance(linePoints[linePoints.Count - 1], linePoints[linePoints.Count - 2]);
             }
         }
