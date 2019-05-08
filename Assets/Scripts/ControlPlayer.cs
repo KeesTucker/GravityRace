@@ -31,6 +31,10 @@ public class ControlPlayer : MonoBehaviour
     private GameObject endScreen;
     private GameObject runScreen;
 
+    private RectTransform boost;
+
+    public float boostAmount = 100f;
+
     void Start()
     {
         r.isKinematic = true;
@@ -43,6 +47,8 @@ public class ControlPlayer : MonoBehaviour
         GameObject.Find("Level").GetComponent<TMPro.TMP_Text>().text = levelManager.levelNumber.ToString();
         endScreen.SetActive(false);
         runScreen = GameObject.Find("Running");
+
+        boost = GameObject.Find("Boost").GetComponent<RectTransform>();
     }
 
     public void Release(Vector2 velocity)
@@ -124,24 +130,63 @@ public class ControlPlayer : MonoBehaviour
 
             if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])
             {
-                PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
-                PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
+                {
+                    if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
+                    {
+                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
+                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
+                    PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
             }
             else if (timeSinceStart < levelManager.starTimes[1] && timeSinceStart > levelManager.starTimes[0])
             {
-                PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
-                PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
+                {
+                    if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
+                    {
+                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 2);
+                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 2);
+                    PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;
             }
             else if (timeSinceStart < levelManager.starTimes[0])
             {
-                PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
-                PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
+                {
+                    if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
+                    {
+                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 3);
+                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 3);
+                    PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(2).GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                runScreen.SetActive(false);
+                endScreen.SetActive(true);
+                Destroy(GameObject.Find("Next"));
             }
 
             runScreen.SetActive(false);
@@ -151,21 +196,25 @@ public class ControlPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (left && !right && released)
+        if (left && !right && released && boostAmount > 0)
         {
             r.AddForce(Quaternion.Euler(new Vector3(0, 0, 90)) * r.velocity.normalized * controlForce);
             ParticleSystem.EmissionModule emissionR = rightParticle.GetComponent<ParticleSystem>().emission;
             emissionR.enabled = false;
             ParticleSystem.EmissionModule emissionL = leftParticle.GetComponent<ParticleSystem>().emission;
             emissionL.enabled = true;
+            boostAmount -= 0.5f;
+            boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 3f);
         }
-        else if (right && !left && released)
+        else if (right && !left && released && boostAmount > 0)
         {
             r.AddForce(Quaternion.Euler(new Vector3(0, 0, -90)) * r.velocity.normalized * controlForce);
             ParticleSystem.EmissionModule emissionL = leftParticle.GetComponent<ParticleSystem>().emission;
             emissionL.enabled = false;
             ParticleSystem.EmissionModule emissionR = rightParticle.GetComponent<ParticleSystem>().emission;
             emissionR.enabled = true;
+            boostAmount -= 0.5f;
+            boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 3f);
         }
         else
         {

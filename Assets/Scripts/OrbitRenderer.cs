@@ -100,6 +100,14 @@ public class OrbitRenderer : MonoBehaviour
             {
                 direction = AngleBetweenPoints(planetGravs[i].position, pastPoint);
                 distance = Vector2.Distance(planetGravs[i].position, pastPoint);
+                if (distance < planetGravs[i].transform.localScale.x)
+                {
+                    for (int v = 0; v < (length - u) / resolution; v++)
+                    {
+                        linePoints.Add(new Vector3(Mathf.Clamp(nextPoint.x, transform.parent.position.x - 1000, transform.parent.position.x + 1000), Mathf.Clamp(nextPoint.y, transform.parent.position.y - 1000, transform.parent.position.y + 1000), 0));
+                    }
+                    u = length;
+                }
                 computedForce.Add(planetGravs[i].forceComponentConstant * direction / (distance * distance));
                 netAccel += computedForce[i] / mass;
             }

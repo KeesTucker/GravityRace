@@ -4967,7 +4967,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 4111f98f1834c5a4fb88efc89289d93a, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -5033,7 +5033,7 @@ MonoBehaviour:
   right: 0
   released: 0
   releaseSpeed: {x: 0, y: 0}
-  controlForce: 2
+  controlForce: 4
   leftParticle: {fileID: 7411413379947450733}
   rightParticle: {fileID: 7411413379449232315}
   mouseFollow: {fileID: 8725097302785416648, guid: 8c9bfd3c33d4ff14cb633883ce384220,
@@ -5042,6 +5042,7 @@ MonoBehaviour:
   timeSinceStart: 0
   score: {fileID: 0}
   levelManager: {fileID: 0}
+  boostAmount: 100
 --- !u!96 &7411413379496766290
 TrailRenderer:
   serializedVersion: 2
