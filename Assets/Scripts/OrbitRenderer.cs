@@ -31,9 +31,15 @@ public class OrbitRenderer : MonoBehaviour
     float lrLength;
     List<Vector2> computedForce = new List<Vector2>();
 
+    public List<Vector3> timeAfterWarp = new List<Vector3>();
+
     public float correction;
 
     float mass;
+
+    private LineRenderer timeLine;
+
+    private float timeNoWarp;
 
     void Awake()
     {
@@ -43,6 +49,7 @@ public class OrbitRenderer : MonoBehaviour
         mass = rb.mass;
 
         lr.positionCount = (int)(length / resolution) + 1;
+        timeLine = GameObject.Find("TimeLine").GetComponent<LineRenderer>();
     }
 
     void Update()
@@ -70,6 +77,17 @@ public class OrbitRenderer : MonoBehaviour
             netAccel += computedForce[i] / mass;
         }
 
+        //Calculate time warp around large celestial bodies.
+        if (control.released)
+        {
+            control.timeSinceStart -= Mathf.Pow(Mathf.Clamp(netAccel.magnitude - 20f, 0, 100000), 0.33f) / 10f;
+            //Uncomment for time graph.
+            timeNoWarp += Time.deltaTime;
+            timeLine.positionCount = timeAfterWarp.Count;
+            timeAfterWarp.Add(new Vector3(timeNoWarp, control.timeSinceStart, 0));
+            timeLine.SetPositions(timeAfterWarp.ToArray());
+        }
+        
         if (control.released)
         {
             finalStep = timeStep / rb.velocity.magnitude * timeMod;

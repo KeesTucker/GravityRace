@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3332699276568528136}
   - component: {fileID: 3332699276568528137}
-  - component: {fileID: 3332699276568528143}
+  - component: {fileID: 1157173654727194283}
+  - component: {fileID: 4577423006322549006}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: planet
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4111f98f1834c5a4fb88efc89289d93a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 002ee3908c76c5b439d567376ec47e9d, type: 3}
   m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3332699276568528143
-CircleCollider2D:
+--- !u!60 &1157173654727194283
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,5 +95,40 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 2.64, y: 2.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.12, y: 0.5}
+      - {x: 0.049999997, y: 0.5}
+      - {x: -0.32, y: 0.17999999}
+      - {x: -0.5, y: 0.02}
+      - {x: -0.5, y: -0.049999997}
+      - {x: -0.47, y: -0.12}
+      - {x: -0.32999998, y: -0.38}
+      - {x: -0.28, y: -0.44}
+      - {x: 0.06, y: -0.5}
+      - {x: 0.21, y: -0.5}
+      - {x: 0.31, y: -0.35}
+      - {x: 0.5, y: -0.049999997}
+      - {x: 0.5, y: 0.049999997}
+--- !u!114 &4577423006322549006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332699276568528138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266ea67dc5d4245459f55bc786eb2ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifier: 0

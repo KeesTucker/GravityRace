@@ -96,7 +96,7 @@ public class ControlPlayer : MonoBehaviour
 
         if (released)
         {
-            timeSinceStart += 1f * Time.deltaTime;
+            timeSinceStart += Time.deltaTime;
             score.text = timeSinceStart.ToString("#.#") + "s";
         }
     }
