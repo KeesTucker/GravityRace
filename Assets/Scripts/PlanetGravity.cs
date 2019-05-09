@@ -14,14 +14,14 @@ public class PlanetGravity : MonoBehaviour
     private Vector2 force;
     public Vector2 position;
     public int gravMultiplier;
-    public Collider2D colliderCircle;
+    public CircleCollider2D colliderCircle;
 
     public int BlackWhiteHoleMultiplier = 20;
 
     public enum type { Planet, BlackHole, WhiteHole };
     public type bodyType;
 
-    void Start()
+    public void Start()
     {
         UniversalGravityConstant = 6.67f * Mathf.Pow(10f, -11f);
 
@@ -39,15 +39,56 @@ public class PlanetGravity : MonoBehaviour
         else if (bodyType == type.BlackHole)
         {
             gravMultiplier = BlackWhiteHoleMultiplier;
-            colliderCircle.enabled = false;
+            colliderCircle.isTrigger = true;
         }
         else if (bodyType == type.WhiteHole)
         {
             gravMultiplier = -BlackWhiteHoleMultiplier;
-            colliderCircle.enabled = false;
+            colliderCircle.isTrigger = true;
         }
 
         forceComponentConstant = UniversalGravityConstant * player.mass * mass * gravMultiplier;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            if (FindObjectOfType<Camera>().backgroundColor == Color.black)
+            {
+                FindObjectOfType<Camera>().backgroundColor = Color.white;
+            }
+            else
+            {
+                FindObjectOfType<Camera>().backgroundColor = Color.black;
+            }
+            foreach (PlanetGravity planet in FindObjectsOfType<PlanetGravity>())
+            {
+                StartCoroutine(DelaySwitch(planet));
+            }
+        }
+    }
+
+    IEnumerator DelaySwitch(PlanetGravity planet)
+    {
+        player.velocity = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        if (planet.bodyType == type.BlackHole)
+        {
+            planet.bodyType = type.WhiteHole;
+            planet.gameObject.GetComponent<ColourPlanet>().Start();
+        }
+        else if (planet.bodyType == type.WhiteHole)
+        {
+            planet.bodyType = type.BlackHole;
+            planet.gameObject.GetComponent<ColourPlanet>().Start();
+        }
+        else if (planet.bodyType == type.Planet)
+        {
+            planet.massMultiplier *= -1;
+        }
+        planet.Start();
+        player.velocity = new Vector3(0, 0, 0);
     }
 
     void FixedUpdate()

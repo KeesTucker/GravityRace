@@ -8598,9 +8598,9 @@ MonoBehaviour:
   levelNumber: 10
   lastLevel: 0
   starTimes:
-  - 3.3
-  - 4.5
-  - 8
+  - -4.2
+  - -3
+  - 0
 --- !u!4 &1514380089
 Transform:
   m_ObjectHideFlags: 0

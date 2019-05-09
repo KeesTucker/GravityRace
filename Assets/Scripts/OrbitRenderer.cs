@@ -80,7 +80,7 @@ public class OrbitRenderer : MonoBehaviour
         //Calculate time warp around large celestial bodies.
         if (control.released)
         {
-            control.timeSinceStart -= Mathf.Pow(Mathf.Clamp(netAccel.magnitude - 20f, 0, 100000), 0.33f) / 10f;
+            control.timeSinceStart -= Mathf.Clamp(netAccel.magnitude - 10f, 0, 100000) / 300f;
             //Uncomment for time graph.
             timeNoWarp += Time.deltaTime;
             timeLine.positionCount = timeAfterWarp.Count;

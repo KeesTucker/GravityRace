@@ -4908,7 +4908,7 @@ GameObject:
   - component: {fileID: 7411413380818708454}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14852,4 +14852,5 @@ MonoBehaviour:
   timeMod: 5
   resolution: 20
   length: 500
+  timeAfterWarp: []
   correction: 0.00012

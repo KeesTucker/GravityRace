@@ -28,12 +28,10 @@ public class SmoothFollow : MonoBehaviour
     IEnumerator ZoomIn()
     {
         float oldSize = cam.orthographicSize;
-        Debug.Log(oldSize);
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.005f);
             cam.orthographicSize = Mathf.Lerp(oldSize, 20f, i / 100f);
-            Debug.Log(Mathf.Lerp(oldSize, 20, i / 100));
         }
     }
 }

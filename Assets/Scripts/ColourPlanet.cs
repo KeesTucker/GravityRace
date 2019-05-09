@@ -9,7 +9,7 @@ public class ColourPlanet : MonoBehaviour
 
     public PlanetGravity planetGrav;
 
-    void Start()
+    public void Start()
     {
         if (planetGrav.bodyType == PlanetGravity.type.Planet)
         {

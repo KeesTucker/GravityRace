@@ -2092,8 +2092,8 @@ MonoBehaviour:
   levelNumber: 7
   lastLevel: 0
   starTimes:
-  - 1.2
-  - 2
+  - 0
+  - 1.5
   - 3
 --- !u!4 &1514380089
 Transform:
