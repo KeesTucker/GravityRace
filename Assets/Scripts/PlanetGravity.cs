@@ -21,6 +21,8 @@ public class PlanetGravity : MonoBehaviour
     public enum type { Planet, BlackHole, WhiteHole };
     public type bodyType;
 
+    public bool active;
+
     public void Start()
     {
         UniversalGravityConstant = 6.67f * Mathf.Pow(10f, -11f);
@@ -48,6 +50,8 @@ public class PlanetGravity : MonoBehaviour
         }
 
         forceComponentConstant = UniversalGravityConstant * player.mass * mass * gravMultiplier;
+
+        active = true;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -71,8 +75,8 @@ public class PlanetGravity : MonoBehaviour
 
     IEnumerator DelaySwitch(PlanetGravity planet)
     {
-        player.velocity = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(0.05f);
+        planet.active = false;
+        yield return new WaitForSeconds(0.1f);
         if (planet.bodyType == type.BlackHole)
         {
             planet.bodyType = type.WhiteHole;
@@ -88,7 +92,6 @@ public class PlanetGravity : MonoBehaviour
             planet.massMultiplier *= -1;
         }
         planet.Start();
-        player.velocity = new Vector3(0, 0, 0);
     }
 
     void FixedUpdate()
@@ -97,7 +100,10 @@ public class PlanetGravity : MonoBehaviour
         distance = Vector2.Distance(transform.position, player.transform.position);
         force = (forceComponentConstant * direction) / (distance * distance);
 
-        player.AddForce(force);
+        if (active)
+        {
+            player.AddForce(force);
+        }
     }
 
     Vector2 AngleBetweenPoints(Vector2 a, Vector2 b)

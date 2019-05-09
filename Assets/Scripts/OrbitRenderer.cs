@@ -49,7 +49,7 @@ public class OrbitRenderer : MonoBehaviour
         mass = rb.mass;
 
         lr.positionCount = (int)(length / resolution) + 1;
-        timeLine = GameObject.Find("TimeLine").GetComponent<LineRenderer>();
+        timeLine = GameObject.Find("Timeline").GetComponent<LineRenderer>();
     }
 
     void Update()

@@ -9,6 +9,11 @@ public class SmoothFollow : MonoBehaviour
 
     public bool released;
 
+    void Start()
+    {
+        player = GameObject.Find("Player").transform;
+    }
+
     void Update()
     {
         transform.position = player.position + new Vector3(0, 0, -10);
