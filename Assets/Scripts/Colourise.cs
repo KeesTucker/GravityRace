@@ -17,7 +17,7 @@ public class Colourise : MonoBehaviour
         alphaKey = new GradientAlphaKey[2];
 
         colorKey[0].color = color;
-        colorKey[0].time = 0.3f;
+        colorKey[0].time = 0.6f;
         colorKey[1].color = Color.white;
         colorKey[1].time = 1f;
         alphaKey[0].alpha = 1.0f;

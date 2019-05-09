@@ -103,7 +103,7 @@ public class ControlPlayer : MonoBehaviour
 
     IEnumerator OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "planet") //Retry run.
+        if (collision.collider.tag == "planet" || collision.collider.tag == "dynamic") //Retry run.
         {
             explode.SetActive(true);
             GetComponent<SpriteRenderer>().enabled = false;

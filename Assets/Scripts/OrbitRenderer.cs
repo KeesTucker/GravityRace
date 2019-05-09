@@ -71,8 +71,8 @@ public class OrbitRenderer : MonoBehaviour
 
         for (int i = 0; i < planetGravs.Length; i++)
         {
-            direction = AngleBetweenPoints(planetGravs[i].position, rb.transform.position);
-            distance = Vector2.Distance(planetGravs[i].position, rb.transform.position);
+            direction = AngleBetweenPoints(planetGravs[i].transform.position, rb.transform.position);
+            distance = Vector2.Distance(planetGravs[i].transform.position, rb.transform.position);
             computedForce.Add(planetGravs[i].forceComponentConstant * direction / (distance * distance));
             netAccel += computedForce[i] / mass;
         }
@@ -116,8 +116,8 @@ public class OrbitRenderer : MonoBehaviour
             computedForce.Clear();
             for (int i = 0; i < planetGravs.Length; i++)
             {
-                direction = AngleBetweenPoints(planetGravs[i].position, pastPoint);
-                distance = Vector2.Distance(planetGravs[i].position, pastPoint);
+                direction = AngleBetweenPoints(planetGravs[i].transform.position, pastPoint);
+                distance = Vector2.Distance(planetGravs[i].transform.position, pastPoint);
                 if (distance < planetGravs[i].transform.localScale.x)
                 {
                     for (int v = 0; v < (length - u) / resolution; v++)
