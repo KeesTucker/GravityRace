@@ -18,6 +18,7 @@ public class PlanetGravity : MonoBehaviour
     public CircleCollider2D colliderCircle;
     public Rigidbody2D rb;
     public bool affectPlanets = true;
+    public bool affectPlayer = true;
 
     public int BlackWhiteHoleMultiplier = 20;
 
@@ -110,12 +111,12 @@ public class PlanetGravity : MonoBehaviour
         distance = Vector2.Distance(transform.position, player.transform.position);
         force = (forceComponentConstant * direction) / (distance * distance);
 
-        if (active)
+        if (active && affectPlayer)
         {
             player.AddForce(force);
         }
 
-        if (affectPlanets)
+        if (affectPlanets && active)
         {
             for (int i = 0; i < players.Count; i++)
             {
