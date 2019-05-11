@@ -9,8 +9,7 @@ public class SmoothFollow : MonoBehaviour
 
     public bool released;
 
-    public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
-    public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
+    public float orthoZoomSpeed = 0.2f;        // The rate of change of the orthographic size in orthographic mode.
 
     void Start()
     {

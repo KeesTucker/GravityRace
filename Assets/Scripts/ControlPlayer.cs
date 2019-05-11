@@ -62,7 +62,7 @@ public class ControlPlayer : MonoBehaviour
     {
         if (Input.touchCount == 1)
         {
-            Touch touch = Input.touches[0];
+            Touch touch = Input.GetTouch(0);
             if (touch.position.x < Screen.width / 2)
             {
                 left = true;
@@ -74,23 +74,25 @@ public class ControlPlayer : MonoBehaviour
                 right = true;
             }
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            left = true;
-        }
         else
         {
-            left = false;
+            if (Input.GetKey(KeyCode.A))
+            {
+                left = true;
+                right = false;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                right = true;
+                left = false;
+            }
+            else
+            {
+                right = false;
+                left = false;
+            }
         }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            right = true;
-        }
-        else
-        {
-            right = false;
-        }
+        
 
         if (Input.GetMouseButtonDown(0) && !released)
         {
