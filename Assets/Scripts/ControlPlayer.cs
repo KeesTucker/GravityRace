@@ -104,6 +104,11 @@ public class ControlPlayer : MonoBehaviour
             followGO.GetComponent<LineRenderer>().endColor = GetComponent<Colourise>().color;
         }
 
+        if (followGO && Input.touchCount > 1)
+        {
+            Destroy(followGO);
+        }
+
         if (Input.GetMouseButtonUp(0) && !released)
         {
             Release(releaseSpeed);
