@@ -58,10 +58,7 @@ public class OrbitRenderer : MonoBehaviour
         {
             lr.SetPositions(linePoints.ToArray());
         }
-    }
 
-    void FixedUpdate()
-    {
         predictedPoints.Clear();
         linePoints.Clear();
         computedForce.Clear();
@@ -87,7 +84,7 @@ public class OrbitRenderer : MonoBehaviour
             timeAfterWarp.Add(new Vector3(timeNoWarp, control.timeSinceStart, 0));
             timeLine.SetPositions(timeAfterWarp.ToArray());
         }
-        
+
         if (control.released)
         {
             finalStep = timeStep / rb.velocity.magnitude * timeMod;
@@ -141,7 +138,6 @@ public class OrbitRenderer : MonoBehaviour
         }
 
         lrLength = calcLength;
-
     }
 
     Vector2 AngleBetweenPoints(Vector2 a, Vector2 b)

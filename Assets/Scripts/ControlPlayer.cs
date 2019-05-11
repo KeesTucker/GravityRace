@@ -60,6 +60,20 @@ public class ControlPlayer : MonoBehaviour
 
     void Update()
     {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.touches[0];
+            if (touch.position.x < Screen.width / 2)
+            {
+                left = true;
+                right = false;
+            }
+            else if (touch.position.x > Screen.width / 2)
+            {
+                left = false;
+                right = true;
+            }
+        }
         if (Input.GetKey(KeyCode.A))
         {
             left = true;
