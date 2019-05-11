@@ -35,6 +35,10 @@ public class ControlPlayer : MonoBehaviour
 
     public float boostAmount = 100f;
 
+    private SmoothFollow cam;
+
+    public bool stop = false;
+
     void Start()
     {
         r.isKinematic = true;
@@ -49,6 +53,7 @@ public class ControlPlayer : MonoBehaviour
         runScreen = GameObject.Find("Running");
 
         boost = GameObject.Find("Boost").GetComponent<RectTransform>();
+        cam = FindObjectOfType<SmoothFollow>();
     }
 
     public void Release(Vector2 velocity)
@@ -94,7 +99,7 @@ public class ControlPlayer : MonoBehaviour
         }
         
 
-        if (Input.GetMouseButtonDown(0) && !released)
+        if (Input.GetMouseButtonDown(0) && !released && !stop)
         {
             followGO = Instantiate(mouseFollow, transform.position, Quaternion.identity);
             followGO.GetComponent<SetVelocity>().playerT = transform;
@@ -109,10 +114,11 @@ public class ControlPlayer : MonoBehaviour
             Destroy(followGO);
         }
 
-        if (Input.GetMouseButtonUp(0) && !released)
+        if (Input.GetMouseButtonUp(0) && !released && followGO && !stop)
         {
             Release(releaseSpeed);
             Destroy(followGO);
+            cam.Release();
         }
 
         if (released)
@@ -136,6 +142,7 @@ public class ControlPlayer : MonoBehaviour
         {
             GetComponent<Collider2D>().enabled = false;
             released = false;
+            stop = true;
             r.constraints = RigidbodyConstraints2D.FreezeAll;
             Vector3 originalPos = transform.position;
             for (int i = 0; i < 100; i++)

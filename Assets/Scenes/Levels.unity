@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c08b4e401b0d94598e7f9076376394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumOfLevels: 35
+  NumOfLevels: 29
   button: {fileID: 5064499292093208497, guid: e3d7e72cdf76a0747bc7d05cb36542c3, type: 3}
   stars: []
 --- !u!1 &1686213755

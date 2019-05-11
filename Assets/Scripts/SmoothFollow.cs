@@ -47,12 +47,12 @@ public class SmoothFollow : MonoBehaviour
         {
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5f, 60f);
         }
-        
-        if (Input.GetMouseButtonUp(0))
-        {
-            StartCoroutine(ZoomIn());
-            released = true;
-        }
+    }
+
+    public void Release()
+    {
+        StartCoroutine(ZoomIn());
+        released = true;
     }
 
     IEnumerator ZoomIn()
