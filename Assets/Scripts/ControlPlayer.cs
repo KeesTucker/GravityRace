@@ -145,14 +145,14 @@ public class ControlPlayer : MonoBehaviour
             stop = true;
             r.constraints = RigidbodyConstraints2D.FreezeAll;
             Vector3 originalPos = transform.position;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 50; i++)
             {
-                transform.position = Vector2.Lerp(originalPos, collision.transform.position, i / 100f);
+                transform.position = Vector2.Lerp(originalPos, collision.transform.position, i / 50f);
                 yield return new WaitForEndOfFrame();
             }
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 30; i++)
             {
-                transform.localScale = transform.localScale * 1.1f;
+                transform.localScale = transform.localScale * 2.2f;
                 yield return new WaitForEndOfFrame();
             }
 

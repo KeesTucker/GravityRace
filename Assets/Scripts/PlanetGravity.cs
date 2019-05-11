@@ -77,6 +77,7 @@ public class PlanetGravity : MonoBehaviour
             {
                 FindObjectOfType<Camera>().backgroundColor = Color.black;
             }
+            FindObjectOfType<LevelManager>().Seed();
             foreach (PlanetGravity planet in FindObjectsOfType<PlanetGravity>())
             {
                 StartCoroutine(DelaySwitch(planet));
@@ -91,12 +92,12 @@ public class PlanetGravity : MonoBehaviour
         if (planet.bodyType == type.BlackHole)
         {
             planet.bodyType = type.WhiteHole;
-            planet.gameObject.GetComponent<ColourPlanet>().Start();
+            planet.gameObject.GetComponent<ColourPlanet>().Colour();
         }
         else if (planet.bodyType == type.WhiteHole)
         {
             planet.bodyType = type.BlackHole;
-            planet.gameObject.GetComponent<ColourPlanet>().Start();
+            planet.gameObject.GetComponent<ColourPlanet>().Colour();
         }
         else if (planet.bodyType == type.Planet)
         {

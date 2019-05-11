@@ -45,6 +45,7 @@ public class SmoothFollow : MonoBehaviour
         transform.position = player.position + new Vector3(0, 0, -10);
         if (!released)
         {
+            cam.orthographicSize -= Input.mouseScrollDelta.y;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5f, 60f);
         }
     }
