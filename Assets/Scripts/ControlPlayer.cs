@@ -156,6 +156,11 @@ public class ControlPlayer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
+            if (levelManager.levelNumber % 5 == 0)
+            {
+                GetComponent<ShowAds>().GameOver();
+            }
+
             if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])
             {
                 if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
