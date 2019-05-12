@@ -5043,6 +5043,7 @@ MonoBehaviour:
   score: {fileID: 0}
   levelManager: {fileID: 0}
   boostAmount: 100
+  stop: 0
 --- !u!96 &7411413379496766290
 TrailRenderer:
   serializedVersion: 2
@@ -5172,7 +5173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c9a79a8e094b845b42ee31f2d06bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.37066844, b: 0.6415094, a: 1}
+  color: {r: 0.1254902, g: 0.18431373, b: 0.3019608, a: 1}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

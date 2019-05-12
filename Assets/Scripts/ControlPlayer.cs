@@ -232,7 +232,7 @@ public class ControlPlayer : MonoBehaviour
             ParticleSystem.EmissionModule emissionL = leftParticle.GetComponent<ParticleSystem>().emission;
             emissionL.enabled = true;
             boostAmount -= 0.5f;
-            boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 3f);
+            boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 4.11f);
         }
         else if (right && !left && released && boostAmount > 0)
         {
@@ -242,7 +242,7 @@ public class ControlPlayer : MonoBehaviour
             ParticleSystem.EmissionModule emissionR = rightParticle.GetComponent<ParticleSystem>().emission;
             emissionR.enabled = true;
             boostAmount -= 0.5f;
-            boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 3f);
+            boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 4.11f);
         }
         else
         {

@@ -19,7 +19,7 @@ public class CreateLevels : MonoBehaviour
             instantiated.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = (i + 1).ToString();
             instantiated.GetComponent<Navigation>().selected = i + 1;
             Random.InitState(i);
-            Color color = Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 0.8f), Random.Range(0.8f, 1f));
+            Color color = Color.white;//Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 0.8f), Random.Range(0.8f, 1f));
             instantiated.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = color;
 
             if (!PlayerPrefs.HasKey("Level" + (i + 1).ToString()))

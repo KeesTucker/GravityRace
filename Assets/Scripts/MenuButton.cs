@@ -6,26 +6,28 @@ using UnityEngine.UI;
 public class MenuButton : MonoBehaviour
 {
     public bool onOff = true;
-    public Sprite on;
-    public Sprite off;
     public Image image;
+    public bool isSound;
 
     void Start()
     {
-        if (PlayerPrefs.HasKey("Sound"))
+        if (isSound)
         {
-            if (PlayerPrefs.GetInt("Sound") == 0)
+            if (PlayerPrefs.HasKey("Sound"))
             {
-                onOff = false;
-                image.sprite = off;
+                if (PlayerPrefs.GetInt("Sound") == 0)
+                {
+                    onOff = false;
+                    image.color = Color.gray;
+                }
+                else
+                {
+                    onOff = true;
+                    image.color = Color.white;
+                }
             }
-            else
-            {
-                onOff = true;
-                image.sprite = on;
-            }
+            FindObjectOfType<Audio>().SoundToggle();
         }
-        FindObjectOfType<Audio>().SoundToggle();
     }
 
     public void Sound()
@@ -34,13 +36,13 @@ public class MenuButton : MonoBehaviour
         {
             PlayerPrefs.SetInt("Sound", 0);
             onOff = false;
-            image.sprite = off;
+            image.color = Color.gray;
         }
         else if (onOff == false)
         {
             PlayerPrefs.SetInt("Sound", 1);
             onOff = true;
-            image.sprite = on;
+            image.color = Color.white;
         }
         FindObjectOfType<Audio>().SoundToggle();
     }
