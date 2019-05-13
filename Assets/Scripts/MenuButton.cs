@@ -8,6 +8,7 @@ public class MenuButton : MonoBehaviour
     public bool onOff = true;
     public Image image;
     public bool isSound;
+    public GameObject about;
 
     void Start()
     {
@@ -45,5 +46,14 @@ public class MenuButton : MonoBehaviour
             image.color = Color.white;
         }
         FindObjectOfType<Audio>().SoundToggle();
+    }
+
+    public void OpenAbout()
+    {
+        about.SetActive(true);
+    }
+    public void CloseAbout()
+    {
+        about.SetActive(false);
     }
 }

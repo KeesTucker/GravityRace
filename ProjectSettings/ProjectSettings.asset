@@ -254,15 +254,15 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: '
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: '{inproject}: Keys/user.keystore'
+  AndroidKeyaliasName: keestriplefingames
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -735,7 +735,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: c1420d99-5029-43c0-959c-d96fa1b6516c
   framebufferDepthMemorylessMode: 0
-  projectName: Gravity (2)
+  projectName: Gravity_
   organizationId: thesilencer
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
