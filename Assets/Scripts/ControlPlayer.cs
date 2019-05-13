@@ -158,7 +158,17 @@ public class ControlPlayer : MonoBehaviour
 
             if (levelManager.levelNumber % 5 == 0)
             {
-                GetComponent<ShowAds>().GameOver();
+                if (PlayerPrefs.HasKey("NoAds"))
+                {
+                    if (PlayerPrefs.GetInt("NoAds") == 0)
+                    {
+                        GetComponent<ShowAds>().GameOver();
+                    }
+                }
+                else
+                {
+                    GetComponent<ShowAds>().GameOver();
+                }
             }
 
             if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])

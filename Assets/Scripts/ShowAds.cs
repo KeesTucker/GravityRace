@@ -14,7 +14,7 @@ public class ShowAds : MonoBehaviour
 
     private void RequestInterstitial()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        string adUnitId = "ca-app-pub-3563227024265510/7186721384";
 
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);

@@ -56,4 +56,9 @@ public class MenuButton : MonoBehaviour
     {
         about.SetActive(false);
     }
+
+    public void NoAds()
+    {
+        FindObjectOfType<IAPManager>().RemoveAds();
+    }
 }
