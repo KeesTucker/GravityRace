@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 7411413379496766290}
   - component: {fileID: 7411413381106883914}
   - component: {fileID: 7411413380818708454}
-  - component: {fileID: 3775203842839131371}
+  - component: {fileID: 3267313862731687119}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5204,7 +5204,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
---- !u!114 &3775203842839131371
+--- !u!114 &3267313862731687119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
