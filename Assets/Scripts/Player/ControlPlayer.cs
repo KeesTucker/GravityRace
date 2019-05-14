@@ -179,12 +179,22 @@ public class ControlPlayer : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
                         PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                        if (PlayerPrefs.HasKey("Stars"))
+                        {
+                            PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 1);
+                        }
+                        PlayerPrefs.SetInt("Stars", 1);
                     }
                 }
                 else
                 {
                     PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
                     PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    if (PlayerPrefs.HasKey("Stars"))
+                    {
+                        PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 1);
+                    }
+                    PlayerPrefs.SetInt("Stars", 1);
                 }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
             }
@@ -196,12 +206,22 @@ public class ControlPlayer : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 2);
                         PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                        if (PlayerPrefs.HasKey("Stars"))
+                        {
+                            PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 2);
+                        }
+                        PlayerPrefs.SetInt("Stars", 2);
                     }
                 }
                 else
                 {
                     PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 2);
                     PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    if (PlayerPrefs.HasKey("Stars"))
+                    {
+                        PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 2);
+                    }
+                    PlayerPrefs.SetInt("Stars", 2);
                 }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;
@@ -214,12 +234,22 @@ public class ControlPlayer : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 3);
                         PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                        if (PlayerPrefs.HasKey("Stars"))
+                        {
+                            PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 3);
+                        }
+                        PlayerPrefs.SetInt("Stars", 3);
                     }
                 }
                 else
                 {
                     PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 3);
                     PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    if (PlayerPrefs.HasKey("Stars"))
+                    {
+                        PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 3);
+                    }
+                    PlayerPrefs.SetInt("Stars", 3);
                 }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;

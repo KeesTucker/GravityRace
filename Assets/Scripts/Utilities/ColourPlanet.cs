@@ -20,10 +20,10 @@ public class ColourPlanet : MonoBehaviour
         if (planetGrav.bodyType == PlanetGravity.type.Planet)
         {
             Color color = Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.2f, 0.6f), Random.Range(0.5f, 1f));
-            //planet.color = color;
-            planet.color = Color.white;
+            planet.color = color;
+            //planet.color = Color.white;
             Color.RGBToHSV(color, out float h, out float s, out float v);
-            planet.sprite = sprites[Random.Range(0, sprites.Length)];
+            //planet.sprite = sprites[Random.Range(0, sprites.Length)];
             s = Mathf.Clamp(s - 0.2f, 0, 1f);
             v = Mathf.Clamp(v + 0.2f, 0, 1f);
             color = Color.HSVToRGB(h, s, v);

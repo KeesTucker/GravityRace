@@ -11,7 +11,7 @@ public class Colourise : MonoBehaviour
     GradientColorKey[] colorKey;
     GradientAlphaKey[] alphaKey;
 
-    void Start()
+    public void Start()
     {
         colorKey = new GradientColorKey[2];
         alphaKey = new GradientAlphaKey[2];

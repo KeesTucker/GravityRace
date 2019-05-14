@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
@@ -60,5 +61,15 @@ public class MenuButton : MonoBehaviour
     public void NoAds()
     {
         FindObjectOfType<IAPManager>().RemoveAds();
+    }
+
+    public void Store()
+    {
+        SceneManager.LoadScene("Store");
+    }
+
+    public void Levels()
+    {
+        SceneManager.LoadScene("Levels");
     }
 }
