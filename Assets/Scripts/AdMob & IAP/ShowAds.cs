@@ -6,20 +6,31 @@ using GoogleMobileAds.Api;
 public class ShowAds : MonoBehaviour
 {
     private InterstitialAd interstitial;
+    private bool requested = false;
 
-    void Start()
+    void Update()
     {
-        RequestInterstitial();
+        if (requested)
+        {
+            if (this.interstitial.IsLoaded())
+            {
+                this.interstitial.Show();
+            }
+            requested = false;
+        }
     }
 
     private void RequestInterstitial()
     {
-        string adUnitId = "ca-app-pub-3563227024265510/7186721384";
+        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
 
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
+        AdRequest request = new AdRequest.Builder()
+        .AddTestDevice(AdRequest.TestDeviceSimulator)       // Simulator.
+        .AddTestDevice(SystemInfo.deviceUniqueIdentifier)  // My test device.
+        .Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
 
@@ -65,9 +76,7 @@ public class ShowAds : MonoBehaviour
 
     public void GameOver()
     {
-        if (this.interstitial.IsLoaded())
-        {
-            this.interstitial.Show();
-        }
+        RequestInterstitial();
+        requested = true;
     }
 }

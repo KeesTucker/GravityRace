@@ -18,9 +18,9 @@ public class DestroyOnContact : MonoBehaviour
             colorKey = new GradientColorKey[2];
             alphaKey = new GradientAlphaKey[2];
 
-            colorKey[0].color = GetComponent<SpriteRenderer>().color;
+            colorKey[0].color = GetComponent<TrailRenderer>().startColor;
             colorKey[0].time = 0.6f;
-            colorKey[1].color = GetComponent<SpriteRenderer>().color;
+            colorKey[1].color = GetComponent<TrailRenderer>().startColor;
             colorKey[1].time = 1f;
             alphaKey[0].alpha = 1.0f;
             alphaKey[0].time = 0.6f;

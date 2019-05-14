@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "189564426575",
+    "firebase_url": "https://gravity-65581366.firebaseio.com",
+    "project_id": "gravity-65581366",
+    "storage_bucket": "gravity-65581366.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189564426575:android:f8ae53549aea615b",
+        "android_client_info": {
+          "package_name": "com.TriplefinGames.Gravity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189564426575-esvd9ef1rol3387lgbqmohd9jelioihp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrDBf_pPMGGwqlzuMljetHMJU5PMg97ZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189564426575-esvd9ef1rol3387lgbqmohd9jelioihp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

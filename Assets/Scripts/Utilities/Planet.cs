@@ -6,22 +6,22 @@ public class Planet : MonoBehaviour
 {
     public bool down = true;
     public float maxSize = 1.3f;
-
+    public float scale;
     public int run;
+    SpriteRenderer sprite;
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         if (transform.parent.GetComponent<PlanetGravity>().bodyType == PlanetGravity.type.BlackHole)
         {
-            maxSize = 3f;
-            float scale = Random.Range(1f, maxSize);
+            maxSize = 1.75f;
             transform.localScale = new Vector3(scale, scale, 0);
             run = 0;
         }
         else if (transform.parent.GetComponent<PlanetGravity>().bodyType == PlanetGravity.type.WhiteHole)
         {
-            maxSize = 2f;
-            float scale = Random.Range(1f, maxSize);
+            maxSize = 1.75f;
             transform.localScale = new Vector3(scale, scale, 0);
             run = 1;
         }
@@ -37,6 +37,9 @@ public class Planet : MonoBehaviour
             if (down)
             {
                 transform.localScale -= new Vector3(Time.deltaTime * (1 / transform.parent.localScale.x) * 1 * maxSize, Time.deltaTime * (1 / transform.parent.localScale.x) * 1 * maxSize, 0);
+                Color col = sprite.color;
+                col.a += 0.02f;
+                sprite.color = col;
                 if (transform.localScale.x - Time.deltaTime * (1 / transform.parent.localScale.x) * 1 * maxSize <= 1)
                 {
                     down = false;
@@ -44,6 +47,9 @@ public class Planet : MonoBehaviour
             }
             else
             {
+                Color col = sprite.color;
+                col.a = 0;
+                sprite.color = col;
                 transform.localScale = new Vector3(maxSize, maxSize);
                 down = true;
             }
@@ -52,7 +58,11 @@ public class Planet : MonoBehaviour
         {
             if (down)
             {
-                transform.localScale = new Vector3(1, 1);
+                Color col = sprite.color;
+                col.a = 1;
+                sprite.color = col;
+                float s = Random.Range(1f, maxSize);
+                transform.localScale = new Vector3(s, s);
                 down = false;
             }
             else
@@ -63,6 +73,9 @@ public class Planet : MonoBehaviour
                 {
                     down = true;
                 }
+                Color col = sprite.color;
+                col.a -= 0.05f;
+                sprite.color = col;
             }
         }
     }

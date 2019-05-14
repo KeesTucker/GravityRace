@@ -72,11 +72,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4111f98f1834c5a4fb88efc89289d93a, type: 3}
-  m_Color: {r: 1, g: 0.9315591, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.8275918, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.64, y: 2.64}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -112,13 +112,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 0
   massMultiplier: 1e+11
+  players: []
   player: {fileID: 0}
   forceComponentConstant: 0
   position: {x: 0, y: 0}
   gravMultiplier: 0
   colliderCircle: {fileID: 5626562410009562838}
+  rb: {fileID: 0}
+  affectPlanets: 1
+  affectPlayer: 1
   BlackWhiteHoleMultiplier: 20
   bodyType: 0
+  active: 0
 --- !u!1 &6105836955088958022
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +191,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -15
   m_Sprite: {fileID: 21300000, guid: 4111f98f1834c5a4fb88efc89289d93a, type: 3}
   m_Color: {r: 1, g: 0.93333334, b: 0, a: 0.5019608}
   m_FlipX: 0

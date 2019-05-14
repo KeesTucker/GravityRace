@@ -34,7 +34,6 @@ public class Colourise : MonoBehaviour
         colorOverLifetime.color = gradient;
         colorOverLifetime = transform.GetChild(3).GetComponent<ParticleSystem>().colorOverLifetime;
         colorOverLifetime.color = gradient;
-        transform.GetChild(2).GetComponent<LineRenderer>().startColor = color;
-        transform.GetChild(2).GetComponent<LineRenderer>().endColor = color;
+        transform.GetChild(2).GetComponent<LineRenderer>().colorGradient = gradient;
     }
 }
