@@ -7,6 +7,8 @@ public class SmoothFollow : MonoBehaviour
     public Transform player;
     public Camera cam;
 
+    public Transform background;
+
     public bool released;
 
     public float orthoZoomSpeed = 0.2f;        // The rate of change of the orthographic size in orthographic mode.
@@ -48,6 +50,9 @@ public class SmoothFollow : MonoBehaviour
             cam.orthographicSize -= Input.mouseScrollDelta.y;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5f, 60f);
         }
+        background.localScale = Vector3.one * (cam.orthographicSize / 20) * 1.3f;
+        Vector3 nonClamp = -transform.position / 10f;
+        background.transform.localPosition = new Vector3(Mathf.Clamp(nonClamp.x, -8.6f, 8.6f), Mathf.Clamp(nonClamp.y, -18.3f, 18.3f), 100);
     }
 
     public void Release()

@@ -35,7 +35,10 @@ public class PlanetGravity : MonoBehaviour
 
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        if (affectPlayer)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        }
 
         foreach (GameObject GO in GameObject.FindGameObjectsWithTag("dynamic"))
         {
@@ -60,7 +63,14 @@ public class PlanetGravity : MonoBehaviour
             colliderCircle.isTrigger = true;
         }
 
-        forceComponentConstant = UniversalGravityConstant * player.mass * mass * gravMultiplier;
+        if (player)
+        {
+            forceComponentConstant = UniversalGravityConstant * player.mass * mass * gravMultiplier;
+        }
+        else
+        {
+            forceComponentConstant = UniversalGravityConstant * mass * gravMultiplier;
+        }
 
         active = true;
     }
@@ -108,20 +118,23 @@ public class PlanetGravity : MonoBehaviour
 
     void FixedUpdate()
     {
-        direction = AngleBetweenPoints(transform.position, player.transform.position);
-        distance = Vector2.Distance(transform.position, player.transform.position);
-        force = (forceComponentConstant * direction) / (distance * distance);
-
-        if (active && affectPlayer)
+        if (player)
         {
-            player.AddForce(force);
+            direction = AngleBetweenPoints(transform.position, player.transform.position);
+            distance = Vector2.Distance(transform.position, player.transform.position);
+            force = (forceComponentConstant * direction) / (distance * distance);
+
+            if (active && affectPlayer)
+            {
+                player.AddForce(force);
+            }
         }
 
         if (affectPlanets && active)
         {
             for (int i = 0; i < players.Count; i++)
             {
-                if (players[i] != rb)
+                if (players[i] != rb && players[i])
                 {
                     direction = AngleBetweenPoints(transform.position, players[i].transform.position);
                     distance = Vector2.Distance(transform.position, players[i].transform.position);
