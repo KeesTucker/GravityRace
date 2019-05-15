@@ -14,6 +14,8 @@ public class ShopShips : MonoBehaviour
 
     public GameObject shipShopPrefab;
 
+    public Sprite current;
+
     private Color color;
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,39 @@ public class ShopShips : MonoBehaviour
             ship.GetComponent<BuyItem>().index = i;
             ship.GetComponent<BuyItem>().isShip = true;
             ship.GetComponent<BuyItem>().price = prices[i];
-            ship.transform.GetChild(2).GetChild(0).GetComponent<TMPro.TMP_Text>().text = prices[i].ToString();
+            if (PlayerPrefs.HasKey("ship" + i.ToString()))
+            {
+                ship.transform.GetChild(2).GetComponent<Image>().enabled = false;
+                ship.transform.GetChild(2).GetChild(0).GetComponent<TMPro.TMP_Text>().enabled = false;
+            }
+            else
+            {
+                ship.transform.GetChild(2).GetChild(0).GetComponent<TMPro.TMP_Text>().text = prices[i].ToString();
+            }
+            if (PlayerPrefs.HasKey("shipIndex"))
+            {
+                if (PlayerPrefs.GetInt("shipIndex") == i)
+                {
+                    ship.transform.GetChild(0).GetComponent<Image>().sprite = current;
+                    ColorBlock colors = ship.GetComponent<Button>().colors;
+                    colors.normalColor = Color.white;
+                    colors.selectedColor = Color.white;
+                    ship.GetComponent<Button>().colors = colors;
+                }
+                if (i == 0)
+                {
+                    ship.GetComponent<BuyItem>().bought = true;
+                }
+            }
+            else if(i == 0)
+            {
+                ship.transform.GetChild(0).GetComponent<Image>().sprite = current;
+                ship.GetComponent<BuyItem>().bought = true;
+                ColorBlock colors = ship.GetComponent<Button>().colors;
+                colors.normalColor = Color.white;
+                colors.selectedColor = Color.white;
+                ship.GetComponent<Button>().colors = colors;
+            }
         }
     }
 }

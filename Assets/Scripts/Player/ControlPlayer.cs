@@ -39,6 +39,10 @@ public class ControlPlayer : MonoBehaviour
 
     public bool stop = false;
 
+    public Transform sun;
+
+    public Sprite end;
+
     void Start()
     {
         r.isKinematic = true;
@@ -54,6 +58,8 @@ public class ControlPlayer : MonoBehaviour
 
         boost = GameObject.Find("Boost").GetComponent<RectTransform>();
         cam = FindObjectOfType<SmoothFollow>();
+
+        sun = GameObject.Find("End").transform;
     }
 
     public void Release(Vector2 velocity)
@@ -126,6 +132,19 @@ public class ControlPlayer : MonoBehaviour
             timeSinceStart += Time.deltaTime;
             score.text = timeSinceStart.ToString("#.#") + "s";
         }
+        else if (!stop)
+        {
+            transform.up = releaseSpeed.normalized;
+        }
+        else
+        {
+            transform.up = AngleBetweenPoints(sun.position, transform.position);
+        }
+    }
+
+    Vector2 AngleBetweenPoints(Vector2 a, Vector2 b)
+    {
+        return new Vector2(a.x - b.x, a.y - b.y).normalized;
     }
 
     IEnumerator OnCollisionEnter2D(Collision2D collision)
@@ -150,9 +169,11 @@ public class ControlPlayer : MonoBehaviour
                 transform.position = Vector2.Lerp(originalPos, collision.transform.position, i / 50f);
                 yield return new WaitForEndOfFrame();
             }
-            for (int i = 0; i < 30; i++)
+            GetComponent<SpriteRenderer>().sprite = end;
+            GetComponent<SpriteRenderer>().color = Color.white;
+            for (int i = 0; i < 8; i++)
             {
-                transform.localScale = transform.localScale * 2.2f;
+                transform.localScale = transform.localScale * 1.6f;
                 yield return new WaitForEndOfFrame();
             }
 
@@ -177,13 +198,23 @@ public class ControlPlayer : MonoBehaviour
                 {
                     if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
                     {
-                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
-                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
                         if (PlayerPrefs.HasKey("Stars"))
                         {
-                            PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 1);
+                            if (PlayerPrefs.HasKey("Level" + levelManager.levelNumber.ToString()))
+                            {
+                                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 1 - PlayerPrefs.GetInt("Level" + levelManager.levelNumber.ToString()));
+                            }
+                            else
+                            {
+                                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 1);
+                            }
                         }
-                        PlayerPrefs.SetInt("Stars", 1);
+                        else
+                        {
+                            PlayerPrefs.SetInt("Stars", 1);
+                        }
+                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 1);
+                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
                     }
                 }
                 else
@@ -194,7 +225,10 @@ public class ControlPlayer : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 1);
                     }
-                    PlayerPrefs.SetInt("Stars", 1);
+                    else
+                    {
+                        PlayerPrefs.SetInt("Stars", 1);
+                    }
                 }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
             }
@@ -203,14 +237,24 @@ public class ControlPlayer : MonoBehaviour
                 if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
                 {
                     if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
-                    {
-                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 2);
-                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
+                    { 
                         if (PlayerPrefs.HasKey("Stars"))
                         {
-                            PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 2);
+                            if (PlayerPrefs.HasKey("Level" + levelManager.levelNumber.ToString()))
+                            {
+                                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 2 - PlayerPrefs.GetInt("Level" + levelManager.levelNumber.ToString()));
+                            }
+                            else
+                            {
+                                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 2);
+                            }
                         }
-                        PlayerPrefs.SetInt("Stars", 2);
+                        else
+                        {
+                            PlayerPrefs.SetInt("Stars", 2);
+                        }
+                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 2);
+                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
                     }
                 }
                 else
@@ -221,7 +265,10 @@ public class ControlPlayer : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 2);
                     }
-                    PlayerPrefs.SetInt("Stars", 2);
+                    else
+                    {
+                        PlayerPrefs.SetInt("Stars", 2);
+                    }
                 }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;
@@ -232,13 +279,23 @@ public class ControlPlayer : MonoBehaviour
                 {
                     if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
                     {
-                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 3);
-                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
                         if (PlayerPrefs.HasKey("Stars"))
                         {
-                            PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 3);
+                            if (PlayerPrefs.HasKey("Level" + levelManager.levelNumber.ToString()))
+                            {
+                                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 3 - PlayerPrefs.GetInt("Level" + levelManager.levelNumber.ToString()));
+                            }
+                            else
+                            {
+                                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 3);
+                            }
                         }
-                        PlayerPrefs.SetInt("Stars", 3);
+                        else
+                        {
+                            PlayerPrefs.SetInt("Stars", 3);
+                        }
+                        PlayerPrefs.SetInt("Level" + levelManager.levelNumber.ToString(), 3);
+                        PlayerPrefs.SetFloat("LevelTime" + levelManager.levelNumber.ToString(), timeSinceStart);
                     }
                 }
                 else
@@ -249,7 +306,10 @@ public class ControlPlayer : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 3);
                     }
-                    PlayerPrefs.SetInt("Stars", 3);
+                    else
+                    {
+                        PlayerPrefs.SetInt("Stars", 3);
+                    }
                 }
                 endScreen.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                 endScreen.transform.GetChild(1).GetComponent<Image>().color = Color.white;

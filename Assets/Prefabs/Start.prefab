@@ -5046,6 +5046,8 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   boostAmount: 100
   stop: 0
+  sun: {fileID: 0}
+  end: {fileID: 21300000, guid: f47928bd1b7038b46922f6daec255e39, type: 3}
 --- !u!96 &7411413379496766290
 TrailRenderer:
   serializedVersion: 2
@@ -5241,10 +5243,11 @@ MonoBehaviour:
   - {r: 1, g: 0.81695867, b: 0, a: 1}
   - {r: 0.20865203, g: 0.6981132, b: 0.16135636, a: 1}
   ships:
+  - {fileID: 21300000, guid: 4111f98f1834c5a4fb88efc89289d93a, type: 3}
   - {fileID: 21300000, guid: 53193894baf39c544b34946b3a4991b1, type: 3}
   - {fileID: 21300000, guid: 3b7b7e8b1cd4a9e4eabb25d2aee44ede, type: 3}
-  - {fileID: 21300000, guid: b337b424516a4b94198b03ed75589689, type: 3}
   - {fileID: 21300000, guid: 0c8364a80ae2f474e8e458d5988ca646, type: 3}
+  - {fileID: 21300000, guid: b337b424516a4b94198b03ed75589689, type: 3}
   - {fileID: 21300000, guid: 418e144d2040f894297d5bfa674c3291, type: 3}
   - {fileID: 21300000, guid: 3a9f320518bdc9b48a2bfb6c057a6dcb, type: 3}
 --- !u!1 &7411413379449232310

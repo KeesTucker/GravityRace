@@ -6,13 +6,11 @@ public class RotateForward : MonoBehaviour
 {
     public Rigidbody2D r;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
-        transform.up = r.velocity.normalized;
+        if (r.velocity.normalized != new Vector2(0, 0))
+        {
+            transform.up = r.velocity.normalized;
+        }
     }
 }
