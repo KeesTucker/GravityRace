@@ -30,6 +30,16 @@ public class MenuButton : MonoBehaviour
             }
             FindObjectOfType<Audio>().SoundToggle();
         }
+        if (gameObject.name == "NoAds")
+        {
+            if (PlayerPrefs.HasKey("NoAds"))
+            {
+                if (PlayerPrefs.GetInt("NoAds") == 1)
+                {
+                    GetComponent<Button>().interactable = false;
+                }
+            }
+        }
     }
 
     public void Sound()

@@ -177,7 +177,7 @@ public class ControlPlayer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            if (levelManager.levelNumber % 5 == 0)
+            if (levelManager.levelNumber % 3 == 0)
             {
                 if (PlayerPrefs.HasKey("NoAds"))
                 {
