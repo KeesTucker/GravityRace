@@ -11,21 +11,26 @@ public class CreateLevels : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Create();
+    }
+
+    public void Create()
+    {
         GameObject instantiated;
         for (int i = 0; i < NumOfLevels; i++)
         {
             instantiated = Instantiate(button);
             instantiated.transform.parent = transform;
-            instantiated.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = (i + 1).ToString();
+            instantiated.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TMP_Text>().text = (i + 1).ToString();
             instantiated.GetComponent<Navigation>().selected = i + 1;
             Random.InitState(i);
             Color color = Color.white;//Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 0.8f), Random.Range(0.8f, 1f));
-            instantiated.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = color;
+            instantiated.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TMP_Text>().color = color;
 
             if (!PlayerPrefs.HasKey("Level" + (i + 1).ToString()))
             {
                 instantiated.GetComponent<Button>().interactable = false;
-                instantiated.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.gray;
+                instantiated.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.gray;
             }
             else
             {
@@ -38,7 +43,7 @@ public class CreateLevels : MonoBehaviour
             if (PlayerPrefs.HasKey("Level" + (i).ToString()) || i == 0)
             {
                 instantiated.GetComponent<Button>().interactable = true;
-                instantiated.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = color;
+                instantiated.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TMP_Text>().color = color;
             }
         }
     }

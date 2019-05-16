@@ -82,4 +82,24 @@ public class MenuButton : MonoBehaviour
     {
         SceneManager.LoadScene("Levels");
     }
+
+    public void OpenStore()
+    {
+        SceneManager.LoadScene("IAP");
+    }
+
+    public void Buy30Stars()
+    {
+        FindObjectOfType<IAPManager>().BuyStars30();
+    }
+
+    public void Buy60Stars()
+    {
+        FindObjectOfType<IAPManager>().BuyStars60();
+    }
+
+    public void Buy120Stars()
+    {
+        FindObjectOfType<IAPManager>().BuyStars120();
+    }
 }

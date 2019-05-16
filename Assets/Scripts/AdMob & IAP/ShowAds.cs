@@ -27,7 +27,10 @@ public class ShowAds : MonoBehaviour
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
+        AdRequest request = new AdRequest.Builder()
+        .AddTestDevice(AdRequest.TestDeviceSimulator)       // Simulator.
+        .AddTestDevice(SystemInfo.deviceUniqueIdentifier)  // My test device.
+        .Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
 

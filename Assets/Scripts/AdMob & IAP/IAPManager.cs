@@ -11,9 +11,13 @@ public class IAPManager : MonoBehaviour, IStoreListener
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
     public static string product_RemoveAds = "remove_ads";
+    public static string product_30Stars = "stars30";
+    public static string product_60Stars = "stars60";
+    public static string product_120Stars = "stars120";
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         // If we haven't set up the Unity Purchasing reference
         if (m_StoreController == null)
         {
@@ -34,6 +38,9 @@ public class IAPManager : MonoBehaviour, IStoreListener
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
         builder.AddProduct(product_RemoveAds, ProductType.NonConsumable);
+        builder.AddProduct(product_30Stars, ProductType.Consumable);
+        builder.AddProduct(product_60Stars, ProductType.Consumable);
+        builder.AddProduct(product_120Stars, ProductType.Consumable);
 
         // Kick off the remainder of the set-up with an asynchrounous call, passing the configuration 
         // and this class' instance. Expect a response either in OnInitialized or OnInitializeFailed.
@@ -52,6 +59,27 @@ public class IAPManager : MonoBehaviour, IStoreListener
         // Buy the non-consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
         BuyProductID(product_RemoveAds);
+    }
+
+    public void BuyStars30()
+    {
+        // Buy the non-consumable product using its general identifier. Expect a response either 
+        // through ProcessPurchase or OnPurchaseFailed asynchronously.
+        BuyProductID(product_30Stars);
+    }
+
+    public void BuyStars60()
+    {
+        // Buy the non-consumable product using its general identifier. Expect a response either 
+        // through ProcessPurchase or OnPurchaseFailed asynchronously.
+        BuyProductID(product_60Stars);
+    }
+
+    public void BuyStars120()
+    {
+        // Buy the non-consumable product using its general identifier. Expect a response either 
+        // through ProcessPurchase or OnPurchaseFailed asynchronously.
+        BuyProductID(product_120Stars);
     }
 
     void BuyProductID(string productId)
@@ -113,6 +141,42 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
             PlayerPrefs.SetInt("NoAds", 1);
             GameObject.Find("Ads").GetComponent<Button>().interactable = false;
+        }
+        else if (String.Equals(args.purchasedProduct.definition.id, product_30Stars, StringComparison.Ordinal))
+        {
+            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+            if (PlayerPrefs.HasKey("Stars"))
+            {
+                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 30);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Stars", 30);
+            }
+        }
+        else if (String.Equals(args.purchasedProduct.definition.id, product_60Stars, StringComparison.Ordinal))
+        {
+            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+            if (PlayerPrefs.HasKey("Stars"))
+            {
+                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 60);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Stars", 60);
+            }
+        }
+        else if (String.Equals(args.purchasedProduct.definition.id, product_120Stars, StringComparison.Ordinal))
+        {
+            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+            if (PlayerPrefs.HasKey("Stars"))
+            {
+                PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 120);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Stars", 120);
+            }
         }
         else
         {
