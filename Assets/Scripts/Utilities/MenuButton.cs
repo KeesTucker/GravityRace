@@ -117,4 +117,9 @@ public class MenuButton : MonoBehaviour
     {
         Application.OpenURL("https://twitter.com/afunroyalegame");
     }
+
+    public void Privacy()
+    {
+        Application.OpenURL("https://gravity-zen.flycricket.io/privacy.html");
+    }
 }

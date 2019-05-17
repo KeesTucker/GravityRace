@@ -54,6 +54,9 @@ public class OrbitRenderer : MonoBehaviour
 
     void Update()
     {
+        length = (int)(500f * (0.03333f / Time.deltaTime));
+        lr.positionCount = (int)(length / resolution) + 1;
+
         if (control.releaseSpeed != new Vector2(0, 0))
         {
             lr.SetPositions(linePoints.ToArray());
