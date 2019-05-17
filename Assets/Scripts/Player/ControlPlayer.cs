@@ -177,18 +177,18 @@ public class ControlPlayer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            if (levelManager.levelNumber % 3 == 0)
+            if (levelManager.levelNumber % 4 == 0)
             {
-                if (PlayerPrefs.HasKey("NoAds"))
+                if (PlayerPrefs.HasKey("AdConfig"))
                 {
-                    if (PlayerPrefs.GetInt("NoAds") == 0)
+                    if (PlayerPrefs.GetInt("AdConfig") == 0)
                     {
-                        GetComponent<ShowAds>().GameOver();
+                        FindObjectOfType<ShowAds>().GameOver();
                     }
                 }
                 else
                 {
-                    GetComponent<ShowAds>().GameOver();
+                    FindObjectOfType<ShowAds>().GameOver();
                 }
             }
 

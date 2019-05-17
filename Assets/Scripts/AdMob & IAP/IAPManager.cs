@@ -139,8 +139,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         if (String.Equals(args.purchasedProduct.definition.id, product_RemoveAds, StringComparison.Ordinal))
         {
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-            PlayerPrefs.SetInt("NoAds", 1);
-            GameObject.Find("Ads").GetComponent<Button>().interactable = false;
+            FindObjectOfType<AdConfig>().SuccessNoAds();
         }
         else if (String.Equals(args.purchasedProduct.definition.id, product_30Stars, StringComparison.Ordinal))
         {

@@ -73,6 +73,16 @@ public class MenuButton : MonoBehaviour
         FindObjectOfType<IAPManager>().RemoveAds();
     }
 
+    public void AdIAP()
+    {
+        SceneManager.LoadScene("AdIAP");
+    }
+
+    public void RewardStars()
+    {
+        FindObjectOfType<ShowAds>().Reward();
+    }
+
     public void Store()
     {
         SceneManager.LoadScene("Store");
@@ -101,5 +111,10 @@ public class MenuButton : MonoBehaviour
     public void Buy120Stars()
     {
         FindObjectOfType<IAPManager>().BuyStars120();
+    }
+
+    public void Twitter()
+    {
+        Application.OpenURL("https://twitter.com/afunroyalegame");
     }
 }
