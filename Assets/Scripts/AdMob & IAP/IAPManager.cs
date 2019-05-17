@@ -19,21 +19,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         DontDestroyOnLoad(gameObject);
         // If we haven't set up the Unity Purchasing reference
-        if (m_StoreController == null)
-        {
-            // Begin to configure our connection to Purchasing
-            InitializePurchasing();
-        }
+        InitializePurchasing();
     }
 
     public void InitializePurchasing()
     {
-        // If we have already connected to Purchasing ...
-        if (IsInitialized())
-        {
-            // ... we are done here.
-            return;
-        }
 
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 

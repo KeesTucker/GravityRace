@@ -20,36 +20,61 @@ public class AdConfig : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("AdConfig") == 0)
             {
-                standard.GetComponent<Image>().sprite = selected;
+                if (standard)
+                {
+                    standard.GetComponent<Image>().sprite = selected;
+                    current = standard;
+                }
+                
                 FindObjectOfType<ShowAds>().HideBanner();
-                current = standard;
+                
             }
             else if (PlayerPrefs.GetInt("AdConfig") == 1)
             {
-                banner.GetComponent<Image>().sprite = selected;
-                current = banner;
+                if (banner)
+                {
+                    banner.GetComponent<Image>().sprite = selected;
+                    current = banner;
+                }
+                
+                FindObjectOfType<ShowAds>().StartBanner();
+                
             }
             else if (PlayerPrefs.GetInt("AdConfig") == 2)
             {
-                none.GetComponent<Image>().sprite = selected;
+                if (none)
+                {
+                    none.GetComponent<Image>().sprite = selected;
+                    standard.GetComponent<Button>().interactable = false;
+                    banner.GetComponent<Button>().interactable = false;
+                    none.GetComponent<Button>().interactable = false;
+                    current = none;
+                }
+                
                 FindObjectOfType<ShowAds>().HideBanner();
-                current = none;
-                standard.GetComponent<Button>().interactable = false;
-                banner.GetComponent<Button>().interactable = false;
-                none.GetComponent<Button>().interactable = false;
+                
             }
-            else
+            else if (standard)
             {
                 standard.GetComponent<Image>().sprite = selected;
                 PlayerPrefs.SetInt("AdConfig", 0);
                 current = standard;
             }
+            else
+            {
+                PlayerPrefs.SetInt("AdConfig", 0);
+            }
         }
         else
         {
-            standard.GetComponent<Image>().sprite = selected;
+            if (standard)
+            {
+                standard.GetComponent<Image>().sprite = selected;
+                current = standard;
+            }
+            
             PlayerPrefs.SetInt("AdConfig", 0);
-            current = standard;
+            
         }
     }
 

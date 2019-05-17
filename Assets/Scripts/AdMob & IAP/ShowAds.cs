@@ -109,11 +109,11 @@ public class ShowAds : MonoBehaviour
                         + amount.ToString() + " " + type);
         if (PlayerPrefs.HasKey("Stars"))
         {
-            PlayerPrefs.SetInt("Stars", (int)amount);
+            PlayerPrefs.SetInt("Stars", (int)amount + PlayerPrefs.GetInt("Stars"));
         }
         else
         {
-            PlayerPrefs.SetInt("Stars", 15);
+            PlayerPrefs.SetInt("Stars", (int)amount);
         }
     }
 
@@ -141,10 +141,7 @@ public class ShowAds : MonoBehaviour
         this.interstitial.OnAdLeavingApplication += HandleOnAdLeavingApplication;
 
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder()
-        .AddTestDevice(AdRequest.TestDeviceSimulator)       // Simulator.
-        .AddTestDevice(SystemInfo.deviceUniqueIdentifier)  // My test device.
-        .Build();
+        AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
     }
@@ -153,7 +150,7 @@ public class ShowAds : MonoBehaviour
     {
         string adUnitId = "ca-app-pub-3563227024265510/1203389669";
 
-        this.banner = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
+        this.banner = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Top);
 
         // Called when an ad request has successfully loaded.
         this.banner.OnAdLoaded += HandleOnAdLoaded;
@@ -167,10 +164,7 @@ public class ShowAds : MonoBehaviour
         this.banner.OnAdLeavingApplication += HandleOnAdLeavingApplication;
 
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder()
-        .AddTestDevice(AdRequest.TestDeviceSimulator)       // Simulator.
-        .AddTestDevice(SystemInfo.deviceUniqueIdentifier)  // My test device.
-        .Build();
+        AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.banner.LoadAd(request);
     }
@@ -231,7 +225,7 @@ public class ShowAds : MonoBehaviour
 
     public void GameOver()
     {
-        RequestInterstitial();
+        this.RequestInterstitial();
         requested = true;
     }
 
