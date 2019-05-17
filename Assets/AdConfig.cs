@@ -21,6 +21,7 @@ public class AdConfig : MonoBehaviour
             if (PlayerPrefs.GetInt("AdConfig") == 0)
             {
                 standard.GetComponent<Image>().sprite = selected;
+                FindObjectOfType<ShowAds>().HideBanner();
                 current = standard;
             }
             else if (PlayerPrefs.GetInt("AdConfig") == 1)
@@ -31,7 +32,11 @@ public class AdConfig : MonoBehaviour
             else if (PlayerPrefs.GetInt("AdConfig") == 2)
             {
                 none.GetComponent<Image>().sprite = selected;
+                FindObjectOfType<ShowAds>().HideBanner();
                 current = none;
+                standard.GetComponent<Button>().interactable = false;
+                banner.GetComponent<Button>().interactable = false;
+                none.GetComponent<Button>().interactable = false;
             }
             else
             {
@@ -62,7 +67,7 @@ public class AdConfig : MonoBehaviour
         current.GetComponent<Image>().sprite = circle;
         banner.GetComponent<Image>().sprite = selected;
         PlayerPrefs.SetInt("AdConfig", 1);
-        banner = standard;
+        current = banner;
         FindObjectOfType<ShowAds>().StartBanner();
     }
 
@@ -76,7 +81,10 @@ public class AdConfig : MonoBehaviour
         current.GetComponent<Image>().sprite = circle;
         none.GetComponent<Image>().sprite = selected;
         PlayerPrefs.SetInt("AdConfig", 2);
-        none = standard;
+        current = none;
         FindObjectOfType<ShowAds>().HideBanner();
+        standard.GetComponent<Button>().interactable = false;
+        banner.GetComponent<Button>().interactable = false;
+        none.GetComponent<Button>().interactable = false;
     }
 }

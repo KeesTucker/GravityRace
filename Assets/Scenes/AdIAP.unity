@@ -2578,12 +2578,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fa34785731e754499db72f1aae8a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {fileID: 0}
-  banner: {fileID: 0}
-  none: {fileID: 0}
+  standard: {fileID: 91536664}
+  banner: {fileID: 1732758549}
+  none: {fileID: 300217875}
   current: {fileID: 0}
-  selected: {fileID: 0}
-  circle: {fileID: 0}
+  selected: {fileID: 21300000, guid: 68373c952bc694248952b05982222534, type: 3}
+  circle: {fileID: 21300000, guid: 4111f98f1834c5a4fb88efc89289d93a, type: 3}
 --- !u!1 &1957150817
 GameObject:
   m_ObjectHideFlags: 0
