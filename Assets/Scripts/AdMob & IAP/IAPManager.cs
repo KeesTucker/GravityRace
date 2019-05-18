@@ -116,7 +116,6 @@ public class IAPManager : MonoBehaviour, IStoreListener
         m_StoreExtensionProvider = extensions;
     }
 
-
     public void OnInitializeFailed(InitializationFailureReason error)
     {
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
@@ -129,7 +128,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
         if (String.Equals(args.purchasedProduct.definition.id, product_RemoveAds, StringComparison.Ordinal))
         {
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-            FindObjectOfType<AdConfig>().SuccessNoAds();
+            foreach (AdConfig config in FindObjectsOfType<AdConfig>())
+            {
+                config.SuccessNoAds();
+            }
         }
         else if (String.Equals(args.purchasedProduct.definition.id, product_30Stars, StringComparison.Ordinal))
         {

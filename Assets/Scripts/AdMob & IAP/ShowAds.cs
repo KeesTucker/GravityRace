@@ -32,6 +32,7 @@ public class ShowAds : MonoBehaviour
 
         this.RequestReward();
         this.RequestBanner();
+        this.RequestInterstitial();
 
         if (PlayerPrefs.HasKey("AdConfig"))
         {
@@ -150,7 +151,7 @@ public class ShowAds : MonoBehaviour
     {
         string adUnitId = "ca-app-pub-3563227024265510/1203389669";
 
-        this.banner = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Top);
+        this.banner = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
 
         // Called when an ad request has successfully loaded.
         this.banner.OnAdLoaded += HandleOnAdLoaded;
@@ -176,6 +177,7 @@ public class ShowAds : MonoBehaviour
         {
             interstitial.Destroy();
         }
+        this.RequestInterstitial();
     }
 
     public void HandleOnAdClosedB(object sender, System.EventArgs args)
@@ -201,6 +203,7 @@ public class ShowAds : MonoBehaviour
         {
             interstitial.Destroy();
         }
+        this.RequestInterstitial();
     }
 
     public void HandleOnAdFailedToLoadB(object sender, AdFailedToLoadEventArgs args)
@@ -211,6 +214,7 @@ public class ShowAds : MonoBehaviour
         {
             banner.Destroy();
         }
+        this.RequestBanner();
     }
 
     public void HandleOnAdOpened(object sender, System.EventArgs args)
@@ -225,7 +229,6 @@ public class ShowAds : MonoBehaviour
 
     public void GameOver()
     {
-        this.RequestInterstitial();
         requested = true;
     }
 

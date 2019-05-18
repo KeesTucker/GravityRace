@@ -184,11 +184,13 @@ public class ControlPlayer : MonoBehaviour
                     if (PlayerPrefs.GetInt("AdConfig") == 0)
                     {
                         FindObjectOfType<ShowAds>().GameOver();
+                        Debug.Log("Ad Fired");
                     }
                 }
                 else
                 {
                     FindObjectOfType<ShowAds>().GameOver();
+                    Debug.Log("Ad Fired");
                 }
             }
 

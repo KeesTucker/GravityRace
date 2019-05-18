@@ -103,13 +103,16 @@ public class AdConfig : MonoBehaviour
 
     public void SuccessNoAds()
     {
-        current.GetComponent<Image>().sprite = circle;
-        none.GetComponent<Image>().sprite = selected;
-        PlayerPrefs.SetInt("AdConfig", 2);
-        current = none;
-        FindObjectOfType<ShowAds>().HideBanner();
-        standard.GetComponent<Button>().interactable = false;
-        banner.GetComponent<Button>().interactable = false;
-        none.GetComponent<Button>().interactable = false;
+        if (current)
+        {
+            current.GetComponent<Image>().sprite = circle;
+            none.GetComponent<Image>().sprite = selected;
+            PlayerPrefs.SetInt("AdConfig", 2);
+            current = none;
+            FindObjectOfType<ShowAds>().HideBanner();
+            standard.GetComponent<Button>().interactable = false;
+            banner.GetComponent<Button>().interactable = false;
+            none.GetComponent<Button>().interactable = false;
+        }
     }
 }
