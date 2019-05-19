@@ -40,6 +40,14 @@ public class ShowAds : MonoBehaviour
             {
                 this.banner.Show();
             }
+            else
+            {
+                this.banner.Hide();
+            }
+        }
+        else
+        {
+            this.banner.Hide();
         }
     }
 
@@ -154,7 +162,7 @@ public class ShowAds : MonoBehaviour
         string adUnitId = "ca-app-pub-3563227024265510/1203389669";
         //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
 
-        AdSize adSize = new AdSize(400, 75);
+        AdSize adSize = new AdSize(400, 55);
         this.banner = new BannerView(adUnitId, adSize, AdPosition.Top);
 
         // Called when an ad request has successfully loaded.
