@@ -65,8 +65,8 @@ public class ShowAds : MonoBehaviour
 
     private void RequestReward()
     {
-        //string adUnitId = "ca-app-pub-3563227024265510/9335485964";
-        string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
+        string adUnitId = "ca-app-pub-3563227024265510/9335485964";
+        //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
@@ -126,8 +126,8 @@ public class ShowAds : MonoBehaviour
 
     private void RequestInterstitial()
     {
-        //string adUnitId = "ca-app-pub-3563227024265510/7186721384";
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712"; //test
+        string adUnitId = "ca-app-pub-3563227024265510/7186721384";
+        //string adUnitId = "ca-app-pub-3940256099942544/1033173712"; //test
 
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
@@ -151,8 +151,8 @@ public class ShowAds : MonoBehaviour
 
     private void RequestBanner()
     {
-        //string adUnitId = "ca-app-pub-3563227024265510/1203389669";
-        string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
+        string adUnitId = "ca-app-pub-3563227024265510/1203389669";
+        //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
 
         AdSize adSize = new AdSize(400, 75);
         this.banner = new BannerView(adUnitId, adSize, AdPosition.Top);

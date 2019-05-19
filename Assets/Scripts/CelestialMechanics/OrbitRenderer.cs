@@ -64,12 +64,6 @@ public class OrbitRenderer : MonoBehaviour
     void Update()
     {
         length = (int)(500f * (0.03333f / Time.deltaTime));
-        lr.positionCount = (int)(length / resolution) + 1;
-
-        if (control.releaseSpeed != new Vector2(0, 0))
-        {
-            lr.SetPositions(linePoints.ToArray());
-        }
 
         totalSecs += Time.deltaTime;
         totalFrames++;
@@ -153,6 +147,16 @@ public class OrbitRenderer : MonoBehaviour
         }
 
         lrLength = calcLength;
+    }
+
+    void LateUpdate()
+    {
+        lr.positionCount = linePoints.Count;
+
+        if (control.releaseSpeed != new Vector2(0, 0))
+        {
+            lr.SetPositions(linePoints.ToArray());
+        }
     }
 
     Vector2 AngleBetweenPoints(Vector2 a, Vector2 b)
