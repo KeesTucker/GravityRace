@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 public class MenuButton : MonoBehaviour
 {
@@ -75,7 +75,7 @@ public class MenuButton : MonoBehaviour
 
     public void AdIAP()
     {
-        SceneManager.LoadScene("AdIAP");
+        FindObjectOfType<SceneTransition>().SceneTrans("AdIAP");
     }
 
     public void RewardStars()
@@ -85,17 +85,17 @@ public class MenuButton : MonoBehaviour
 
     public void Store()
     {
-        SceneManager.LoadScene("Store");
+        FindObjectOfType<SceneTransition>().SceneTrans("Store");
     }
 
     public void Levels()
     {
-        SceneManager.LoadScene("Levels");
+        FindObjectOfType<SceneTransition>().SceneTrans("Levels");
     }
 
     public void OpenStore()
     {
-        SceneManager.LoadScene("IAP");
+        FindObjectOfType<SceneTransition>().SceneTrans("IAP");
     }
 
     public void Buy30Stars()
@@ -121,5 +121,10 @@ public class MenuButton : MonoBehaviour
     public void Privacy()
     {
         Application.OpenURL("https://gravity-zen.flycricket.io/privacy.html");
+    }
+
+    public void Leaderboard()
+    {
+        Social.ShowLeaderboardUI();
     }
 }

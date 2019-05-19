@@ -10,7 +10,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
-    public static string product_RemoveAds = "remove_ads";
+    public static string product_RemoveAds = "adsremove";
     public static string product_30Stars = "stars30";
     public static string product_60Stars = "stars60";
     public static string product_120Stars = "stars120";
@@ -27,7 +27,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
-        builder.AddProduct(product_RemoveAds, ProductType.NonConsumable);
+        builder.AddProduct(product_RemoveAds, ProductType.Consumable);
         builder.AddProduct(product_30Stars, ProductType.Consumable);
         builder.AddProduct(product_60Stars, ProductType.Consumable);
         builder.AddProduct(product_120Stars, ProductType.Consumable);

@@ -41,6 +41,10 @@ public class OrbitRenderer : MonoBehaviour
 
     private float timeNoWarp;
 
+    private double totalFrames;
+
+    private float totalSecs;
+
     void Awake()
     {
         lr = GetComponent<LineRenderer>();
@@ -52,6 +56,11 @@ public class OrbitRenderer : MonoBehaviour
         timeLine = GameObject.Find("Timeline").GetComponent<LineRenderer>();
     }
 
+    public int AverageFPS()
+    {
+        return (int)(totalFrames / totalSecs);
+    }
+
     void Update()
     {
         length = (int)(500f * (0.03333f / Time.deltaTime));
@@ -61,6 +70,9 @@ public class OrbitRenderer : MonoBehaviour
         {
             lr.SetPositions(linePoints.ToArray());
         }
+
+        totalSecs += Time.deltaTime;
+        totalFrames++;
 
         predictedPoints.Clear();
         linePoints.Clear();

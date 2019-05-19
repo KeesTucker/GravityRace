@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumber: 29
-  lastLevel: 1
+  lastLevel: 0
   starTimes:
   - 3
   - 6
@@ -1173,16 +1173,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1639677216923801111, guid: 5ecbc8da415ffe24f900a39fb1a2058d,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 641c95224f6eb9d4faeb164ef92f86b6, type: 3}
     - target: {fileID: 6479572595553291217, guid: 5ecbc8da415ffe24f900a39fb1a2058d,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1483238472}
+    - target: {fileID: 1639677216923801111, guid: 5ecbc8da415ffe24f900a39fb1a2058d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 641c95224f6eb9d4faeb164ef92f86b6, type: 3}
     m_RemovedComponents:
     - {fileID: 1639677216923801111, guid: 5ecbc8da415ffe24f900a39fb1a2058d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5ecbc8da415ffe24f900a39fb1a2058d, type: 3}

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Firebase.Analytics;
 
 public class ControlPlayer : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class ControlPlayer : MonoBehaviour
     public bool stop = false;
 
     public Transform sun;
+
+    public GameObject particle;
 
     public Sprite end;
 
@@ -155,10 +158,29 @@ public class ControlPlayer : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             r.constraints = RigidbodyConstraints2D.FreezeAll;
             yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
+            if (Random.Range(0, 4) == 2)
+            {
+                if (PlayerPrefs.HasKey("AdConfig"))
+                {
+                    if (PlayerPrefs.GetInt("AdConfig") == 0)
+                    {
+                        FindObjectOfType<ShowAds>().GameOver();
+                        Debug.Log("Ad Fired");
+                    }
+                }
+                else
+                {
+                    FindObjectOfType<ShowAds>().GameOver();
+                    Debug.Log("Ad Fired");
+                }
+            }
+            SendFPS();
         }
         else if (collision.collider.tag == "end") //Finish the run.
         {
+            particle.SetActive(true);
+            SendFPS();
             GetComponent<Collider2D>().enabled = false;
             released = false;
             stop = true;
@@ -177,7 +199,7 @@ public class ControlPlayer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            if (levelManager.levelNumber % 4 == 0)
+            /*if (levelManager.levelNumber % 4 == 0)
             {
                 if (PlayerPrefs.HasKey("AdConfig"))
                 {
@@ -192,7 +214,7 @@ public class ControlPlayer : MonoBehaviour
                     FindObjectOfType<ShowAds>().GameOver();
                     Debug.Log("Ad Fired");
                 }
-            }
+            }*/
 
             if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])
             {
@@ -327,6 +349,17 @@ public class ControlPlayer : MonoBehaviour
             runScreen.SetActive(false);
             endScreen.SetActive(true);
         }
+    }
+
+    private void SendFPS()
+    {
+        int averageFPS = transform.GetChild(2).GetComponent<OrbitRenderer>().AverageFPS();
+
+        Debug.Log(averageFPS);
+
+        Parameter FPS = new Parameter("average_FPS", averageFPS);
+
+        FirebaseAnalytics.LogEvent("level_FPS_Average", FPS);
     }
 
     void FixedUpdate()

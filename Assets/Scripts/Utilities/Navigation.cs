@@ -9,11 +9,11 @@ public class Navigation : MonoBehaviour
     public Image[] stars;
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
     }
     public void Levels()
     {
-        SceneManager.LoadScene("Levels");
+        FindObjectOfType<SceneTransition>().SceneTrans("Levels");
     }
     public void Next()
     {
@@ -24,11 +24,11 @@ public class Navigation : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level" + (level + 1).ToString());
+            FindObjectOfType<SceneTransition>().SceneTrans("Level" + (level + 1).ToString());
         }
     }
     public void SelectLevel()
     {
-        SceneManager.LoadScene("Level" + (selected).ToString());
+        FindObjectOfType<SceneTransition>().SceneTrans("Level" + (selected).ToString());
     }
 }
