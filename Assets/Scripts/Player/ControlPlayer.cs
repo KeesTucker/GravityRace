@@ -46,6 +46,8 @@ public class ControlPlayer : MonoBehaviour
 
     public Sprite end;
 
+    private SoundFX soundFX;
+
     void Start()
     {
         r.isKinematic = true;
@@ -63,6 +65,8 @@ public class ControlPlayer : MonoBehaviour
         cam = FindObjectOfType<SmoothFollow>();
 
         sun = GameObject.Find("End").transform;
+
+        soundFX = GetComponent<SoundFX>();
     }
 
     public void Release(Vector2 velocity)
@@ -81,6 +85,7 @@ public class ControlPlayer : MonoBehaviour
             {
                 left = true;
                 right = false;
+                
             }
             else if (touch.position.x > Screen.width / 2)
             {
@@ -154,12 +159,13 @@ public class ControlPlayer : MonoBehaviour
     {
         if (collision.collider.tag == "planet" || collision.collider.tag == "dynamic") //Retry run.
         {
+            soundFX.Death();
             explode.SetActive(true);
             GetComponent<SpriteRenderer>().enabled = false;
             r.constraints = RigidbodyConstraints2D.FreezeAll;
             yield return new WaitForSeconds(1f);
             FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
-            if (Random.Range(0, 4) == 2)
+            if (Random.Range(0, 3) == 1)
             {
                 if (PlayerPrefs.HasKey("AdConfig"))
                 {
@@ -176,9 +182,11 @@ public class ControlPlayer : MonoBehaviour
                 }
             }
             SendFPS();
+            FindObjectOfType<PlayGames>().Death();
         }
         else if (collision.collider.tag == "end") //Finish the run.
         {
+            soundFX.Win();
             particle.SetActive(true);
             SendFPS();
             GetComponent<Collider2D>().enabled = false;
@@ -218,6 +226,7 @@ public class ControlPlayer : MonoBehaviour
 
             if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])
             {
+                FindObjectOfType<PlayGames>().GameComplete(1);
                 if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
                 {
                     if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
@@ -258,6 +267,7 @@ public class ControlPlayer : MonoBehaviour
             }
             else if (timeSinceStart < levelManager.starTimes[1] && timeSinceStart > levelManager.starTimes[0])
             {
+                FindObjectOfType<PlayGames>().GameComplete(2);
                 if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
                 {
                     if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
@@ -299,6 +309,7 @@ public class ControlPlayer : MonoBehaviour
             }
             else if (timeSinceStart < levelManager.starTimes[0])
             {
+                FindObjectOfType<PlayGames>().GameComplete(3);
                 if (PlayerPrefs.HasKey("LevelTime" + levelManager.levelNumber.ToString()))
                 {
                     if (PlayerPrefs.GetFloat("LevelTime" + levelManager.levelNumber.ToString()) > timeSinceStart)
@@ -373,6 +384,7 @@ public class ControlPlayer : MonoBehaviour
             emissionL.enabled = true;
             boostAmount -= 0.5f;
             boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 4.11f);
+            StartCoroutine(soundFX.RocketOn());
         }
         else if (right && !left && released && boostAmount > 0)
         {
@@ -383,6 +395,7 @@ public class ControlPlayer : MonoBehaviour
             emissionR.enabled = true;
             boostAmount -= 0.5f;
             boost.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, boostAmount * 4.11f);
+            StartCoroutine(soundFX.RocketOn());
         }
         else
         {
@@ -390,6 +403,7 @@ public class ControlPlayer : MonoBehaviour
             emissionL.enabled = false;
             ParticleSystem.EmissionModule emissionR = rightParticle.GetComponent<ParticleSystem>().emission;
             emissionR.enabled = false;
+            StartCoroutine(soundFX.RocketOff());
         }
     }
 }

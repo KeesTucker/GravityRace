@@ -95,7 +95,9 @@ public class PlayGames : MonoBehaviour
             // handle success or failure
         });
 
+#if UNITY_ANDROID
         PlayGamesPlatform.Instance.Events.IncrementEvent("CgkIz7Kul8IFEAIQAQ", (uint)stars);
         PlayGamesPlatform.Instance.Events.IncrementEvent("CgkIz7Kul8IFEAIQAw", 1);
+#endif
     }
 }
