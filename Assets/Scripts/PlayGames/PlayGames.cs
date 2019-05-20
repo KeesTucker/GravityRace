@@ -96,8 +96,8 @@ public class PlayGames : MonoBehaviour
         });
 
 #if UNITY_ANDROID
-        PlayGamesPlatform.Instance.Events.IncrementEvent("CgkIz7Kul8IFEAIQAQ", (uint)stars);
-        PlayGamesPlatform.Instance.Events.IncrementEvent("CgkIz7Kul8IFEAIQAw", 1);
+        //PlayGamesPlatform.Instance.Events.IncrementEvent("CgkIz7Kul8IFEAIQAQ", (uint)stars);
+        //PlayGamesPlatform.Instance.Events.IncrementEvent("CgkIz7Kul8IFEAIQAw", 1);
 #endif
     }
 }

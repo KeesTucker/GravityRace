@@ -165,7 +165,7 @@ public class ControlPlayer : MonoBehaviour
             r.constraints = RigidbodyConstraints2D.FreezeAll;
             yield return new WaitForSeconds(1f);
             FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
-            if (Random.Range(0, 3) == 1)
+            if (Random.Range(0, 2) == 1)
             {
                 if (PlayerPrefs.HasKey("AdConfig"))
                 {
