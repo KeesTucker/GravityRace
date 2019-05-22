@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.Monetization;
 
 public class ShowAds : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ShowAds : MonoBehaviour
     private BannerView banner;
     private bool requested = false;
     private bool rewardRequested = false;
+    public string placementId = "rewardedVideo";
 
     void Start()
     {
@@ -30,11 +32,11 @@ public class ShowAds : MonoBehaviour
         // Called when the ad click caused the user to leave the application.
         reward.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
 
-        this.RequestReward();
-        this.RequestBanner();
-        this.RequestInterstitial();
+        //this.RequestReward();
+        //this.RequestBanner();
+        //this.RequestInterstitial();
 
-        if (PlayerPrefs.HasKey("AdConfig"))
+        /*if (PlayerPrefs.HasKey("AdConfig"))
         {
             if (PlayerPrefs.GetInt("AdConfig") == 1)
             {
@@ -48,7 +50,7 @@ public class ShowAds : MonoBehaviour
         else
         {
             this.banner.Hide();
-        }
+        }*/
     }
 
     void Update()
@@ -68,6 +70,42 @@ public class ShowAds : MonoBehaviour
                 this.reward.Show();
             }
             rewardRequested = false;
+        }
+    }
+
+    public void ShowAd()
+    {
+        StartCoroutine(WaitForAd());
+    }
+
+    IEnumerator WaitForAd()
+    {
+        while (!Monetization.IsReady(placementId))
+        {
+            yield return null;
+        }
+
+        ShowAdPlacementContent ad = null;
+        ad = Monetization.GetPlacementContent(placementId) as ShowAdPlacementContent;
+
+        if (ad != null)
+        {
+            ad.Show(AdFinished);
+        }
+    }
+
+    void AdFinished(ShowResult result)
+    {
+        if (result == ShowResult.Finished)
+        {
+            if (PlayerPrefs.HasKey("Stars"))
+            {
+                PlayerPrefs.SetInt("Stars", 15 + PlayerPrefs.GetInt("Stars"));
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Stars", 15);
+            }
         }
     }
 
@@ -92,6 +130,7 @@ public class ShowAds : MonoBehaviour
         MonoBehaviour.print(
             "HandleRewardBasedVideoFailedToLoad event received with message: "
                              + args.Message);
+        this.RequestReward();
     }
 
     public void HandleRewardBasedVideoOpened(object sender, System.EventArgs args)
@@ -241,20 +280,21 @@ public class ShowAds : MonoBehaviour
 
     public void GameOver()
     {
-        requested = true;
+        //requested = true;
+        ShowAd();
     }
 
     public void StartBanner()
     {
-        this.banner.Show();
+        //this.banner.Show();
     }
     public void HideBanner()
     {
-        this.banner.Hide();
+        //this.banner.Hide();
     }
-
     public void Reward()
     {
-        rewardRequested = true;
+        //rewardRequested = true;
+        ShowAd();
     }
 }

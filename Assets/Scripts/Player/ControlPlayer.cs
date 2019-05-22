@@ -165,7 +165,7 @@ public class ControlPlayer : MonoBehaviour
             r.constraints = RigidbodyConstraints2D.FreezeAll;
             yield return new WaitForSeconds(1f);
             FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
-            if (Random.Range(0, 2) == 1)
+            /*if (Random.Range(0, 2) == 1)
             {
                 if (PlayerPrefs.HasKey("AdConfig"))
                 {
@@ -180,7 +180,7 @@ public class ControlPlayer : MonoBehaviour
                     FindObjectOfType<ShowAds>().GameOver();
                     Debug.Log("Ad Fired");
                 }
-            }
+            }*/
             SendFPS();
             FindObjectOfType<PlayGames>().Death();
         }
@@ -207,7 +207,7 @@ public class ControlPlayer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            /*if (levelManager.levelNumber % 4 == 0)
+            if (levelManager.levelNumber % 5 == 0)
             {
                 if (PlayerPrefs.HasKey("AdConfig"))
                 {
@@ -222,7 +222,7 @@ public class ControlPlayer : MonoBehaviour
                     FindObjectOfType<ShowAds>().GameOver();
                     Debug.Log("Ad Fired");
                 }
-            }*/
+            }
 
             if (timeSinceStart < levelManager.starTimes[2] && timeSinceStart > levelManager.starTimes[1])
             {

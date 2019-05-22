@@ -988,6 +988,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransition
       objectReference: {fileID: 0}
+    - target: {fileID: 8420587890080416865, guid: e06f2e555c7f9fa42a92c2dd7836d447,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8420587890080416864, guid: e06f2e555c7f9fa42a92c2dd7836d447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2465,7 +2470,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1732758554}
   m_OnClick:
     m_PersistentCalls:

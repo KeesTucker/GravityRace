@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.Monetization;
 
 public class AdmobInitialise : MonoBehaviour
 {
+    string gameId = "3150977";
+    bool testMode = true;
+
     void Start()
     {
         #if UNITY_ANDROID
@@ -15,5 +19,10 @@ public class AdmobInitialise : MonoBehaviour
 
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
+
+        if (Monetization.isSupported)
+        {
+            Monetization.Initialize(gameId, true);
+        }
     }
 }

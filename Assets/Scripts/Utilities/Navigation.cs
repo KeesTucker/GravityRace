@@ -10,7 +10,7 @@ public class Navigation : MonoBehaviour
     public void Retry()
     {
         FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
-        if (Random.Range(0, 2) == 1)
+        if (Random.Range(0, 8) == 1)
         {
             if (PlayerPrefs.HasKey("AdConfig"))
             {
