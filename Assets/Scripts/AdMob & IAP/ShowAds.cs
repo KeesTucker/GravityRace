@@ -280,8 +280,8 @@ public class ShowAds : MonoBehaviour
 
     public void GameOver()
     {
-        requested = true;
-        //ShowAd();
+        //requested = true;
+        ShowAd();
     }
 
     public void StartBanner()
@@ -294,7 +294,7 @@ public class ShowAds : MonoBehaviour
     }
     public void Reward()
     {
-        rewardRequested = true;
-        //ShowAd();
+        //rewardRequested = true;
+        ShowAd();
     }
 }
