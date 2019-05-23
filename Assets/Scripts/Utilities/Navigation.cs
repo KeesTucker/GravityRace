@@ -10,7 +10,7 @@ public class Navigation : MonoBehaviour
     public void Retry()
     {
         FindObjectOfType<SceneTransition>().SceneTrans(SceneManager.GetActiveScene().name);
-        if (Random.Range(0, 8) == 1)
+        /* (Random.Range(0, 8) == 1)
         {
             if (PlayerPrefs.HasKey("AdConfig"))
             {
@@ -25,7 +25,7 @@ public class Navigation : MonoBehaviour
                 FindObjectOfType<ShowAds>().GameOver();
                 Debug.Log("Ad Fired");
             }
-        }
+        }*/
     }
     public void Levels()
     {

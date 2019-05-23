@@ -32,15 +32,15 @@ public class ShowAds : MonoBehaviour
         // Called when the ad click caused the user to leave the application.
         reward.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
 
-        //this.RequestReward();
-        //this.RequestBanner();
-        //this.RequestInterstitial();
+        this.RequestReward();
+        this.RequestBanner();
+        this.RequestInterstitial();
 
-        /*if (PlayerPrefs.HasKey("AdConfig"))
+        if (PlayerPrefs.HasKey("AdConfig"))
         {
-            if (PlayerPrefs.GetInt("AdConfig") == 1)
+            if (false)//PlayerPrefs.GetInt("AdConfig") == 1)
             {
-                this.banner.Show();
+                //this.banner.Show();
             }
             else
             {
@@ -50,7 +50,7 @@ public class ShowAds : MonoBehaviour
         else
         {
             this.banner.Hide();
-        }*/
+        }
     }
 
     void Update()
@@ -280,8 +280,8 @@ public class ShowAds : MonoBehaviour
 
     public void GameOver()
     {
-        //requested = true;
-        ShowAd();
+        requested = true;
+        //ShowAd();
     }
 
     public void StartBanner()
@@ -294,7 +294,7 @@ public class ShowAds : MonoBehaviour
     }
     public void Reward()
     {
-        //rewardRequested = true;
-        ShowAd();
+        rewardRequested = true;
+        //ShowAd();
     }
 }
