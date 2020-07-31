@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Firebase.Analytics;
 
 public class ControlPlayer : MonoBehaviour
 {
@@ -213,13 +212,13 @@ public class ControlPlayer : MonoBehaviour
                 {
                     if (PlayerPrefs.GetInt("AdConfig") == 0)
                     {
-                        FindObjectOfType<ShowAds>().GameOver();
+                        //FindObjectOfType<ShowAds>().GameOver();
                         Debug.Log("Ad Fired");
                     }
                 }
                 else
                 {
-                    FindObjectOfType<ShowAds>().GameOver();
+                    //FindObjectOfType<ShowAds>().GameOver();
                     Debug.Log("Ad Fired");
                 }
             }
@@ -367,10 +366,6 @@ public class ControlPlayer : MonoBehaviour
         int averageFPS = transform.GetChild(2).GetComponent<OrbitRenderer>().AverageFPS();
 
         Debug.Log(averageFPS);
-
-        Parameter FPS = new Parameter("average_FPS", averageFPS);
-
-        FirebaseAnalytics.LogEvent("level_FPS_Average", FPS);
     }
 
     void FixedUpdate()

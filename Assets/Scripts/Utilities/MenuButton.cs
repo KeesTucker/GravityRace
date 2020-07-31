@@ -68,11 +68,6 @@ public class MenuButton : MonoBehaviour
         about.SetActive(false);
     }
 
-    public void NoAds()
-    {
-        FindObjectOfType<IAPManager>().RemoveAds();
-    }
-
     public void AdIAP()
     {
         FindObjectOfType<SceneTransition>().SceneTrans("AdIAP");
@@ -80,7 +75,7 @@ public class MenuButton : MonoBehaviour
 
     public void RewardStars()
     {
-        FindObjectOfType<ShowAds>().Reward();
+        //FindObjectOfType<ShowAds>().Reward();
     }
 
     public void Store()
@@ -100,17 +95,14 @@ public class MenuButton : MonoBehaviour
 
     public void Buy30Stars()
     {
-        FindObjectOfType<IAPManager>().BuyStars30();
     }
 
     public void Buy60Stars()
     {
-        FindObjectOfType<IAPManager>().BuyStars60();
     }
 
     public void Buy120Stars()
     {
-        FindObjectOfType<IAPManager>().BuyStars120();
     }
 
     public void Twitter()
