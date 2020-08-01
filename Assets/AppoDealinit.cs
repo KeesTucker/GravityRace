@@ -4,8 +4,10 @@ using UnityEngine;
 using AppodealAds.Unity.Api;
 using AppodealAds.Unity.Common;
 
-public class AdmobInit : MonoBehaviour, IRewardedVideoAdListener
+public class AppoDealinit : MonoBehaviour, IRewardedVideoAdListener
 {
+    float timer = 0;
+    float goal = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,14 @@ public class AdmobInit : MonoBehaviour, IRewardedVideoAdListener
 
     void Update()
     {
-        showRewardedVideo();
+        /*
+        if (timer > goal)
+        {
+            goal = UnityEngine.Random.Range(2, 10);
+            timer = 0;
+            showRewardedVideo();
+        }
+        timer += Time.deltaTime;*/
     }
 
     public void showRewardedVideo()

@@ -169,7 +169,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.TriplefinGames.Gravity
   buildNumber: {}
-  AndroidBundleVersionCode: 48
+  AndroidBundleVersionCode: 50
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 29
   AndroidPreferredInstallLocation: 0
