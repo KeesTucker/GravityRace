@@ -17,14 +17,13 @@ public class AppoDealinit : MonoBehaviour, IRewardedVideoAdListener
 
     void Update()
     {
-        /*
         if (timer > goal)
         {
             goal = UnityEngine.Random.Range(2, 10);
             timer = 0;
             showRewardedVideo();
         }
-        timer += Time.deltaTime;*/
+        timer += Time.deltaTime;
     }
 
     public void showRewardedVideo()
